@@ -15,3 +15,18 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+## Splash Screen
+
+Created using Flutter Native Splash.
+
+### Android 12+
+- Solid background color
+- Centered logo
+
+### Android < 12
+- Custom background image
+
+### Screenshot
+
+![Splash Screen](<img width="636" height="972" alt="Screenshot 2026-05-21 021508" src="https://github.com/user-attachments/assets/d54b5dee-e083-4d70-b5e7-27f91342e004" />
+)
