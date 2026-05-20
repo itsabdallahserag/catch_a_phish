@@ -28,5 +28,4 @@ Created using Flutter Native Splash.
 
 ### Screenshot
 
-![Splash Screen](<img width="636" height="972" alt="Screenshot 2026-05-21 021508" src="https://github.com/user-attachments/assets/d54b5dee-e083-4d70-b5e7-27f91342e004" />
-)
+![Splash Screen]("C:\Users\AbdallahSerag12\Pictures\Screenshots\Screenshot 2026-05-21 021508.png")
