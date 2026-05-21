@@ -1,5 +1,85 @@
 {
   "helloWorld": "Hello World!",
-  "flutterDemo": "flutter demo",
-  "hello": "Hello"
+  "flutterDemo": "Flutter Demo",
+  "hello": "Hello",
+
+  "login": "Login",
+  "signUp": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "rememberMe": "Remember Me",
+  "forgotPassword": "Forgot Password",
+  "accessSecureTerminal": "Access Secure Terminal",
+  "orContinueWith": "Or Continue With",
+
+  "home": "Home",
+  "messageScan": "Message Scan",
+  "urlScan": "URL Scan",
+  "history": "History",
+  "profile": "Profile",
+  "settings": "Settings",
+
+  "tacticalOverview": "Tactical Overview",
+  "scansToday": "Scans Today",
+  "threatsDetected": "Threats Detected",
+  "totalScans": "Total Scans",
+  "threatsBlocked": "Threats Blocked",
+
+  "systemShieldEngaged": "System Shield: Engaged",
+  "messageScanDescription": "Analyze SMS, email, or text messages for phishing indicators.",
+  "urlScanDescription": "Check links before opening them for phishing threats.",
+
+  "recentScans": "Recent Scans",
+  "viewHistory": "View History",
+  "recentActivity": "Recent Activity",
+  "clearAll": "Clear All",
+  "yesterday": "Yesterday",
+
+  "analyzeMessage": "Analyze Message",
+  "threatAnalysisReport": "Threat Analysis Report",
+  "phishingProbability": "Phishing Probability",
+  "legitimate": "Legitimate",
+  "spamScore": "Spam Score",
+  "highPhishingRisk": "High Phishing Risk",
+  "aiTacticalInsight": "AI Tactical Insight",
+  "sourceIp": "Source IP",
+  "encryption": "Encryption",
+
+  "scanUrl": "Scan URL",
+  "paste": "Paste",
+  "finalVerdict": "Final Verdict",
+  "urlAppearsSafe": "URL Appears Safe",
+  "structureAnalysis": "Structure Analysis",
+  "protocol": "Protocol",
+  "domain": "Domain",
+  "pathAndParams": "Path & Parameters",
+  "reportThisUrl": "Report This URL",
+
+  "accountSecurity": "Account Security",
+  "enhancedProtection": "Enhanced Protection",
+  "authentication": "Authentication",
+  "twoFactorEnabled": "Two-Factor Enabled",
+  "alertPreferences": "Alert Preferences",
+  "immediateNotifications": "Immediate Notifications",
+  "signOut": "Sign Out",
+
+  "security": "Security",
+  "realTimeProtection": "Real-time Protection",
+  "deepInspection": "Deep Inspection",
+  "smsFiltering": "SMS Filtering",
+
+  "preferences": "Preferences",
+  "notifications": "Notifications",
+  "darkMode": "Dark Mode",
+  "language": "Language",
+
+  "resources": "Resources",
+  "helpCenter": "Help Center",
+  "privacyPolicy": "Privacy Policy",
+
+  "safe": "Safe",
+  "malicious": "Malicious",
+  "active": "Active",
+  "premium": "Premium"
 }
