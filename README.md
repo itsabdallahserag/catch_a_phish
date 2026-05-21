@@ -24,6 +24,7 @@ Created using Flutter Native Splash.
 - Centered logo
 
 ### Android < 12
+<img width="636" height="972" alt="Screenshot 2026-05-21 021508" src="https://github.com/user-attachments/assets/e52d1bc1-bbf6-4fa3-a6db-aa0e0ed3472d" />
 
 ## 2) Localization
 
@@ -39,9 +40,8 @@ The application supports multiple languages using Flutter Localization (l10n).
 
 | Arabic | English |
 |---------|---------|
-- Custom background image
-
-### Screenshot
 <img width="532" height="973" alt="Screenshot 2026-05-21 185431" src="https://github.com/user-attachments/assets/f05d43e4-f5b6-4fad-9868-ba7cf01045e1" />
+<img width="512" height="965" alt="Screenshot 2026-05-21 190304" src="https://github.com/user-attachments/assets/5e7d866e-deb2-4a10-a3fe-7f82d5a8e35f" />
+
 
 
