@@ -15,7 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-## Splash Screen
+## 1) Splash Screen
 
 Created using Flutter Native Splash.
 
@@ -24,8 +24,24 @@ Created using Flutter Native Splash.
 - Centered logo
 
 ### Android < 12
+
+## 2) Localization
+
+The application supports multiple languages using Flutter Localization (l10n).
+
+### Features
+- Arabic (ar) support
+- English (en) support
+- Localized UI text
+- Easy translation management using ARB files
+
+### Screenshots
+
+| Arabic | English |
+|---------|---------|
 - Custom background image
 
 ### Screenshot
-<img width="636" height="972" alt="Screenshot 2026-05-21 021508" src="https://github.com/user-attachments/assets/f30b0edf-557e-44bc-b2f1-80e57390db82" />
+<img width="532" height="973" alt="Screenshot 2026-05-21 185431" src="https://github.com/user-attachments/assets/f05d43e4-f5b6-4fad-9868-ba7cf01045e1" />
+
 
