@@ -1,5 +1,6 @@
+import 'package:catch_a_phish/core/utils/app_routes.dart';
 import 'package:catch_a_phish/l10n/app_localizations.dart';
-import 'package:catch_a_phish/login.dart';
+import 'package:catch_a_phish/ui/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: Locale('ar'),
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const LoginScreen(),
+      initialRoute: AppRoutes.login,
+      routes: {
+        AppRoutes.login: (context) => const AuthScreen(),
+      },
     );
   }
 }
