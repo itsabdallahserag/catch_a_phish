@@ -58,21 +58,37 @@ Complete authentication screen built in Flutter for the CatchAPhish app.
 
 ### Structure
 ui/auth/
-├── auth_screen.dart               # Root screen
+
+├── auth_screen.dart               ( Root screen )
+
 ├── custom_widgets/
+
 │   ├── auth_action_button.dart    # Gradient CTA button
+
 │   ├── auth_social_widget.dart    # Google & GitHub buttons
+
 │   └── custom_text_field.dart     # Reusable input field
+
 └── reusable_widgets/
+
     ├── container_auth.dart        # Tab state management
+    
     └── container_auth_widgets/
+    
         ├── tab_content/
+        
         │   ├── auth_tab.dart
+        
         │   └── container_auth_tab.dart
+        
         └── form_login_or_signup/
+        
             ├── login_form.dart
+            
             └── signup_form.dart
 <img width="498" height="802" alt="Screenshot 2026-05-23 180744" src="https://github.com/user-attachments/assets/de08e970-2baa-40f2-aad3-26cbea09fc8d" />
+<img width="497" height="824" alt="Screenshot 2026-05-23 180804" src="https://github.com/user-attachments/assets/2b4c3ee1-b83f-4ebd-a19a-a4d0b9f42621" />
+
             
   
 
