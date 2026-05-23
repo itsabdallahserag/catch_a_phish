@@ -43,6 +43,39 @@ The application supports multiple languages using Flutter Localization (l10n).
 <img width="532" height="973" alt="Screenshot 2026-05-21 185431" src="https://github.com/user-attachments/assets/f05d43e4-f5b6-4fad-9868-ba7cf01045e1" />
 <img width="512" height="965" alt="Screenshot 2026-05-21 190304" src="https://github.com/user-attachments/assets/5e7d866e-deb2-4a10-a3fe-7f82d5a8e35f" />
 
+## 3) Authentication UI
+
+Complete authentication screen built in Flutter for the CatchAPhish app.
+
+### Features
+- Single screen with tab-based switching between Login and Sign Up
+- Reusable CustomTextField with border, validation, and error styling
+- Gradient ACCESS SECURE TERMINAL action button
+- Social login buttons (Google, GitHub)
+- Remember me checkbox and Forgot Password link (Login)
+- Confirm password field with match validation (Sign Up)
+- Background image with transparent card overlay
+
+### Structure
+ui/auth/
+├── auth_screen.dart               # Root screen
+├── custom_widgets/
+│   ├── auth_action_button.dart    # Gradient CTA button
+│   ├── auth_social_widget.dart    # Google & GitHub buttons
+│   └── custom_text_field.dart     # Reusable input field
+└── reusable_widgets/
+    ├── container_auth.dart        # Tab state management
+    └── container_auth_widgets/
+        ├── tab_content/
+        │   ├── auth_tab.dart
+        │   └── container_auth_tab.dart
+        └── form_login_or_signup/
+            ├── login_form.dart
+            └── signup_form.dart
+<img width="498" height="802" alt="Screenshot 2026-05-23 180744" src="https://github.com/user-attachments/assets/de08e970-2baa-40f2-aad3-26cbea09fc8d" />
+            
+  
+
 
 
 
