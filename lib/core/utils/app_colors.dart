@@ -40,4 +40,6 @@ class AppColors {
 
   // Extra Colors
   static const Color lightBlue = Color(0xFF3C5FA6);
+  static const Color blue = Color(0xFF3C5FA5);
+  static const Color black = Color(0xFF000000);
 }
