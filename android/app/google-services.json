@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1038294326845",
+    "project_id": "catch-a-phish",
+    "storage_bucket": "catch-a-phish.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038294326845:android:6c9eeee074ad848cba5454",
+        "android_client_info": {
+          "package_name": "com.example.catch_a_phish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVeMr3PqFlKM0aihhESP7FcfTawmHD3zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
