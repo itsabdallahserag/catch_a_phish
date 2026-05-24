@@ -1,7 +1,7 @@
-import 'package:catch_a_phish/core/utils/app_colors.dart';
-import 'package:catch_a_phish/ui/auth/rusable_widget/container_auth_tab.dart';
-import 'package:catch_a_phish/ui/auth/rusable_widget/container_auth_widgets/form_login_or_signup/login_form.dart';
-import 'package:catch_a_phish/ui/auth/rusable_widget/container_auth_widgets/form_login_or_signup/signup_form.dart';
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Ui/auth/rusable_widget/container_auth_tab.dart';
+import 'package:catch_a_phish/Ui/auth/rusable_widget/container_auth_widgets/form_login_or_signup/login_form.dart';
+import 'package:catch_a_phish/Ui/auth/rusable_widget/container_auth_widgets/form_login_or_signup/signup_form.dart';
 import 'package:flutter/material.dart';
 
 class ContainerAuth extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:catch_a_phish/core/utils/app_images.dart';
-import 'package:catch_a_phish/ui/auth/rusable_widget/container_auth.dart';
+import 'package:catch_a_phish/Core/utils/app_images.dart';
+import 'package:catch_a_phish/Ui/auth/rusable_widget/container_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {

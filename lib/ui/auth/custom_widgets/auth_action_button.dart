@@ -1,5 +1,5 @@
-import 'package:catch_a_phish/core/utils/app_colors.dart';
-import 'package:catch_a_phish/core/utils/app_styles.dart';
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class AuthActionButton extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:catch_a_phish/core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthTab extends StatelessWidget {
