@@ -1,9 +1,11 @@
-import 'package:catch_a_phish/core/utils/app_colors.dart';
-import 'package:catch_a_phish/core/utils/app_images.dart';
-import 'package:catch_a_phish/core/utils/app_styles.dart';
-import 'package:catch_a_phish/ui/auth/custom_widgets/auth_action_button.dart';
-import 'package:catch_a_phish/ui/auth/custom_widgets/auth_social_widget.dart';
-import 'package:catch_a_phish/ui/auth/custom_widgets/custom_text_field.dart';
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_images.dart';
+import 'package:catch_a_phish/Core/utils/app_routes.dart';
+import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
+import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_social_widget.dart';
+import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -32,6 +34,10 @@ class _LoginFormState extends State<LoginForm> {
                 if (text == null || text.isEmpty) {
                   return 'Email is required';
                 }
+                final emailRegex = RegExp(r'^[\w.-]+@[\w.-]+\.\w{2,}$');
+                if (!emailRegex.hasMatch(text)) {
+                  return 'Enter a valid email';
+                }
                 return null;
               },
               controller: emailController,
@@ -52,8 +58,18 @@ class _LoginFormState extends State<LoginForm> {
                 if (text == null || text.isEmpty) {
                   return 'Password is required';
                 }
+                if (text.length < 8) {
+                  return 'Password must be at least 8 characters';
+                }
+                if (!text.contains(RegExp(r'[A-Z]'))) {
+                  return 'Password must contain at least one uppercase letter';
+                }
+                if (!text.contains(RegExp(r'[0-9]'))) {
+                  return 'Password must contain at least one number';
+                }
                 return null;
               },
+
               controller: passwordController,
               hintText: 'Password',
               keyboardType: TextInputType.visiblePassword,
@@ -75,7 +91,11 @@ class _LoginFormState extends State<LoginForm> {
               ],
             ),
             SizedBox(height: 16),
-            AuthActionButton(),
+            AuthActionButton(
+              onTap: () {
+                login();
+              },
+            ),
             SizedBox(height: 36),
             Text(
               'OR CONTINUE WITH',
@@ -88,5 +108,25 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  Future<void> login() async {
+    if (formKey.currentState!.validate()) {
+      final success = await FirebaseUtils.signInWithEmailAndPassword(
+        emailController.text,
+        passwordController.text,
+      );
+      if (!mounted) return;
+      if (success) {
+        Navigator.pushNamed(context, AppRoutes.home);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Login failed. Check your email and password.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }

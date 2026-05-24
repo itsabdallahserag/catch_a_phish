@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:catch_a_phish/core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
 
 class AppStyles {
   static final TextStyle semiBold16White = TextStyle(

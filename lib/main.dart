@@ -1,7 +1,8 @@
-import 'package:catch_a_phish/core/utils/app_routes.dart';
+import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/firebase_options.dart';
 import 'package:catch_a_phish/l10n/app_localizations.dart';
-import 'package:catch_a_phish/ui/auth/auth_screen.dart';
+import 'package:catch_a_phish/Ui/auth/auth_screen.dart';
+import 'package:catch_a_phish/Ui/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.login,
       routes: {
         AppRoutes.login: (context) => const AuthScreen(),
+        AppRoutes.home: (context) => const HomeScreen(),
       },
     );
   }
