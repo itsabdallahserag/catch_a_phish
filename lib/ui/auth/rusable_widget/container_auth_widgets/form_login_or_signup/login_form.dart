@@ -1,5 +1,6 @@
 import 'package:catch_a_phish/core/utils/app_colors.dart';
 import 'package:catch_a_phish/core/utils/app_images.dart';
+import 'package:catch_a_phish/core/utils/app_routes.dart';
 import 'package:catch_a_phish/core/utils/app_styles.dart';
 import 'package:catch_a_phish/ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/ui/auth/custom_widgets/auth_social_widget.dart';
@@ -75,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
               ],
             ),
             SizedBox(height: 16),
-            AuthActionButton(),
+            AuthActionButton(onTap: () { login(); },),
             SizedBox(height: 36),
             Text(
               'OR CONTINUE WITH',
@@ -88,5 +89,11 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+  void  login() {
+    if (formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, AppRoutes.home);
+      print('Email: ${emailController.text}, Password: ${passwordController.text}');
+    }
   }
 }
