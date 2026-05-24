@@ -87,7 +87,26 @@ ui/auth/
             
             └── signup_form.dart
 <img width="498" height="802" alt="Screenshot 2026-05-23 180744" src="https://github.com/user-attachments/assets/de08e970-2baa-40f2-aad3-26cbea09fc8d" />
-<img width="497" height="824" alt="Screenshot 2026-05-23 180804" src="https://github.com/user-attachments/assets/2b4c3ee1-b83f-4ebd-a19a-a4d0b9f42621" />
+<img width="497" height="824" alt="Screenshot 2026-05-23 180804" src="https://github.com/user-attachments/assets/2b4c3ee1-b83f-4ebd-a19a-a4d0b9f42621" /> 
+
+
+## 4) Authentication
+
+Implemented Firebase Authentication to provide secure and seamless user access.
+
+### Features
+- Sign Up with Email & Password
+- Login with Email & Password
+- Google Sign-In Integration
+- GitHub Sign-In Integration
+- Form Validation for Authentication Fields
+- Authentication Error Handling
+- Persistent User Sessions
+- Secure Authentication Flow Using Firebase Auth
+
+### Screenshot
+<img width="518" height="880" alt="image" src="https://github.com/user-attachments/assets/6624bcc4-2de1-4525-93d4-b1d144c4019f" />
+
 
             
   
