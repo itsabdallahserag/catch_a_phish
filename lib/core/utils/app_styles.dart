@@ -32,4 +32,14 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static final TextStyle medium10darkBlue = TextStyle(
+    color: AppColors.darkBlue,
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
+  static final TextStyle medium10mediumGrey = TextStyle(
+    color: AppColors.mediumGrey,
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
 }
