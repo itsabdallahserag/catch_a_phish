@@ -107,6 +107,17 @@ Implemented Firebase Authentication to provide secure and seamless user access.
 ### Screenshot
 <img width="518" height="880" alt="image" src="https://github.com/user-attachments/assets/6624bcc4-2de1-4525-93d4-b1d144c4019f" />
 
+## 5) Home Screen
+Built the home screen with a bottom navigation bar containing 4 tabs:
+- Home
+- History  
+- Profile
+- Settings
+<img width="562" height="973" alt="Screenshot 2026-05-26 220111" src="https://github.com/user-attachments/assets/a9803e0f-6919-45b1-8cae-4d4869dcb5db" />
+<img width="558" height="965" alt="Screenshot 2026-05-26 220056" src="https://github.com/user-attachments/assets/1f4211f6-2afb-44d6-b70c-c0f8e49aebea" />
+
+
+
 
             
   
