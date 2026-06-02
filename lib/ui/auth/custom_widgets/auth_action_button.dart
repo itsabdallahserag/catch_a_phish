@@ -15,7 +15,7 @@ class AuthActionButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 13),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [AppColors.neonBlue, AppColors.darkBlue],
+            colors: [AppColors.neonBlue, AppColors.primary],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),

@@ -45,7 +45,7 @@ class _LoginFormState extends State<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               prefixIcon: Image.asset(
                 AppImages.iconEmail,
-                color: AppColors.primaryColor,
+                color: AppColors.primary,
                 height: 20,
                 width: 20,
               ),
@@ -75,7 +75,7 @@ class _LoginFormState extends State<LoginForm> {
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
-                color: AppColors.primaryColor,
+                color: AppColors.primary,
                 height: 20,
                 width: 20,
               ),
@@ -123,7 +123,7 @@ class _LoginFormState extends State<LoginForm> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Login failed. Check your email and password.'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.red,
           ),
         );
       }

@@ -15,7 +15,7 @@ class ContainerAuthTab extends StatelessWidget {
         vertical: 5,
       ),
       decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Row(

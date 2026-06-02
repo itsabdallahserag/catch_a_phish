@@ -47,7 +47,7 @@ class _SignUpFormState extends State<SignUpForm> {
               keyboardType: TextInputType.emailAddress,
               prefixIcon: Image.asset(
                 AppImages.iconEmail,
-                color: AppColors.primaryColor,
+                color: AppColors.primary,
                 height: 20,
                 width: 20,
               ),
@@ -77,7 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
-                color: AppColors.primaryColor,
+                color: AppColors.primary,
                 height: 20,
                 width: 20,
               ),
@@ -98,7 +98,7 @@ class _SignUpFormState extends State<SignUpForm> {
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
-                color: AppColors.primaryColor,
+                color: AppColors.primary,
                 height: 20,
                 width: 20,
               ),
@@ -137,7 +137,7 @@ class _SignUpFormState extends State<SignUpForm> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Sign up failed. Please try again.'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.red,
           ),
         );
       }

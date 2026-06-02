@@ -19,7 +19,7 @@ class _ContainerAuthState extends State<ContainerAuth> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.transparentBlack,
+          color: AppColors.transparent,
           borderRadius: BorderRadius.circular(24),
         ),
         child: Column(
