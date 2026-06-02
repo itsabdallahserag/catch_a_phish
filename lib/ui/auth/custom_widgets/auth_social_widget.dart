@@ -20,9 +20,9 @@ class AuthSocialWidget extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
-                color: AppColors.transparentBlack,
+                color: AppColors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.greyColor, width: 1),
+                border: Border.all(color: AppColors.grey, width: 1),
               ),
               child: Image.asset(AppImages.google, width: 24, height: 24),
             ),
@@ -39,9 +39,9 @@ class AuthSocialWidget extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
-                color: AppColors.transparentBlack,
+                color: AppColors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.greyColor, width: 1),
+                border: Border.all(color: AppColors.grey, width: 1),
               ),
               child: Image.asset(AppImages.gitHub, width: 24, height: 24),
             ),

@@ -8,7 +8,7 @@ typedef Onvalidator = String? Function(String?)?;
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
-    this.borderSideColor = AppColors.primaryColor,
+    this.borderSideColor = AppColors.primary,
     this.prefixIcon,
     this.suffixIcon,
     this.hintText,
@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: cursorColor ?? AppColors.whiteColor,
+      cursorColor: cursorColor ?? AppColors.white,
       maxLines: maxLines ?? 1,
       controller: controller,
       style: style ??  AppStyles.regular16PrimaryColor,
@@ -54,9 +54,9 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: buildOutLineInputBorder(
           borderSideColor: borderSideColor,
         ),
-        errorBorder: buildOutLineInputBorder(borderSideColor: AppColors.redColor),
+        errorBorder: buildOutLineInputBorder(borderSideColor: AppColors.red),
         focusedErrorBorder: buildOutLineInputBorder(
-          borderSideColor: AppColors.redColor,
+          borderSideColor: AppColors.red,
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

@@ -23,10 +23,10 @@ class AuthTab extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 15),
           decoration: isSelected
               ? BoxDecoration(
-                  color: AppColors.lightBlue,
+                  color: AppColors.skyBlue,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: AppColors.primaryColor,
+                    color: AppColors.primary,
                     width: 1,
                   ),
                 )
@@ -35,7 +35,7 @@ class AuthTab extends StatelessWidget {
             title,
             style: TextStyle(
               inherit: false,
-              color: AppColors.whiteColor,
+              color: AppColors.white,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),

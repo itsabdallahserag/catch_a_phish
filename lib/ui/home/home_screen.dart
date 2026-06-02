@@ -41,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
             elevation: 0,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.transparentBlack,
-            selectedLabelStyle: AppStyles.medium10darkBlue,
+            backgroundColor: AppColors.transparent,
+            selectedLabelStyle: AppStyles.medium10midnightBlue,
             unselectedLabelStyle: AppStyles.medium10mediumGrey,
             currentIndex: selectedIndex,
             onTap: (index) {
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         iconName,
         color: selectedIndex != index
             ? AppColors.mediumGrey
-            : AppColors.darkBlue,
+            : AppColors.midnightBlue,
       ),
       label: label,
     );
