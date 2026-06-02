@@ -10,4 +10,7 @@ class AppImages {
   static const String iconHistory = 'assets/images/iconhistory.png';
   static const String iconProfile = 'assets/images/iconprofile.png';
   static const String iconSettings = 'assets/images/iconsettings.png';
+  static const String iconUrl = 'assets/images/iconurl.png';
+  static const String iconMessage = 'assets/images/iconmessage.png';
+  static const String iconEngaged = 'assets/images/iconengaged.png';
 }

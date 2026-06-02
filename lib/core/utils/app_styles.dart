@@ -3,17 +3,52 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 
 class AppStyles {
   static final TextStyle semiBold16White = TextStyle(
-    color: AppColors.whiteColor,
+    color: AppColors.white,
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+  static final TextStyle semiBold32White = TextStyle(
+    color: AppColors.white,
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+  );
+  static final TextStyle semiBold24White = TextStyle(
+    color: AppColors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+  static final TextStyle semiBold20White = TextStyle(
+    color: AppColors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+  static final TextStyle semiBold24GreenNeon = TextStyle(
+    color: AppColors.neonGreen,
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+    static final TextStyle semiBold32PinkColor = TextStyle(
+    color: AppColors.pink,
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+  );
   static final TextStyle regular12White = TextStyle(
-    color: AppColors.whiteColor,
+    color: AppColors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle regular12LightGrey = TextStyle(
+    color: AppColors.lightGrey,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle regular12DeepBackGround = TextStyle(
+    color: AppColors.deepBackground,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
    static final TextStyle regular16PrimaryColor = TextStyle(
-    color: AppColors.primaryColor,
+    color: AppColors.primary,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -23,7 +58,7 @@ class AppStyles {
     fontWeight: FontWeight.w500,
   );
    static final TextStyle bold15Grey = TextStyle(
-    color: AppColors.greyColor,
+    color: AppColors.grey,
     fontSize: 15,
     fontWeight: FontWeight.w700,
   );
@@ -32,8 +67,8 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
-  static final TextStyle medium10darkBlue = TextStyle(
-    color: AppColors.darkBlue,
+  static final TextStyle medium10midnightBlue = TextStyle(
+    color: AppColors.midnightBlue,
     fontSize: 10,
     fontWeight: FontWeight.w500,
   );
@@ -42,4 +77,16 @@ class AppStyles {
     fontSize: 10,
     fontWeight: FontWeight.w500,
   );
+    static final TextStyle light12White = TextStyle(
+    color: AppColors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+  );
+  static final TextStyle semiLight12LightGrey = TextStyle(
+    color: AppColors.lightGrey,
+    fontSize: 12,
+    fontWeight: FontWeight.w100,
+  );
+
+
 }
