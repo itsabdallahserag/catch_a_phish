@@ -116,6 +116,18 @@ Built the home screen with a bottom navigation bar containing 4 tabs:
 <img width="562" height="973" alt="Screenshot 2026-05-26 220111" src="https://github.com/user-attachments/assets/a9803e0f-6919-45b1-8cae-4d4869dcb5db" />
 <img width="558" height="965" alt="Screenshot 2026-05-26 220056" src="https://github.com/user-attachments/assets/1f4211f6-2afb-44d6-b70c-c0f8e49aebea" />
 
+## 6) Home Screen
+
+The home tab is built from four stateless widget components:
+
+- **TacticalOverView** — shows daily scan and threat counts
+- **Engaged** — displays real-time System Shield status  
+- **MessageScan** — entry point for analyzing text/email payloads
+- **UrlScan** — entry point for checking URLs before clicking
+
+All theming is centralized in `AppColors`, `AppStyles`, and `AppImages`.
+### Screenshot
+<img width="538" height="961" alt="image" src="https://github.com/user-attachments/assets/df6dfc09-dbbb-4b84-bb22-13cd15102f12" />
 
 
 
