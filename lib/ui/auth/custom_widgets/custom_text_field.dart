@@ -2,7 +2,6 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
-
 typedef Onvalidator = String? Function(String?)?;
 
 class CustomTextField extends StatelessWidget {
@@ -21,7 +20,7 @@ class CustomTextField extends StatelessWidget {
     this.style,
     this.maxLines,
     required this.controller,
-      this.cursorColor,
+    this.cursorColor,
   });
   final Color borderSideColor;
   final Widget? prefixIcon;
@@ -36,14 +35,14 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? style;
   final TextEditingController? controller;
   final int? maxLines;
-  final Color? cursorColor ;
+  final Color? cursorColor;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: cursorColor ?? AppColors.white,
       maxLines: maxLines ?? 1,
       controller: controller,
-      style: style ??  AppStyles.regular16PrimaryColor,
+      style: style ?? AppStyles.regular16PrimaryColor,
       obscureText: obscureText,
       keyboardType: keyboardType,
       validator: validator,

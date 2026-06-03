@@ -1,9 +1,9 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/engaged.dart';
-import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan_widgets/message_scan.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/message_scan_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/tactical_over_view.dart';
-import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan_widgets/url_scan.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_scan_button.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {
@@ -44,9 +44,9 @@ class HomeTab extends StatelessWidget {
             SizedBox(height: height*0.02,),
             Engaged(),
             SizedBox(height: height*0.02,),
-            MessageScan(),
+            MessageScanButton(),
             SizedBox(height: height*0.02,),
-            UrlScan()
+            UrlScanButton()
           ],
             ),
       )   );

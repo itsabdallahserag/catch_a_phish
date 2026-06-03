@@ -13,4 +13,11 @@ class AppImages {
   static const String iconUrl = 'assets/images/iconurl.png';
   static const String iconMessage = 'assets/images/iconmessage.png';
   static const String iconEngaged = 'assets/images/iconengaged.png';
+  static const String iconAnalyze = 'assets/images/iconanalyze.png';
+  static const String iconExclamationMark = 'assets/images/iconexclamationmark.png';
+  static const String iconRisk = 'assets/images/iconrisk.png';
+  static const String iconTrue = 'assets/images/icontrue.png';
+  static const String iconAi = 'assets/images/iconai.png';
+  static const String iconReport = 'assets/images/iconreport.png';
+
 }

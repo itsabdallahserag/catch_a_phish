@@ -1,10 +1,12 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
-import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class AuthActionButton extends StatelessWidget {
   final VoidCallback? onTap;
-  const AuthActionButton({super.key,required this.onTap});
+  final Widget child;
+  final List<Color> gradientColors;
+  final Color borderColor;
+  const AuthActionButton({super.key, required this.onTap, required this.child, required this.gradientColors,this.borderColor = AppColors.transparent});
 
   @override
   Widget build(BuildContext context) {
@@ -14,23 +16,15 @@ class AuthActionButton extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 13),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [AppColors.neonBlue, AppColors.primary],
+          gradient: LinearGradient(
+            colors: gradientColors,
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: borderColor, width: 1),
         ),
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'ACCESS SECURE TERMINAL',
-              style: AppStyles.medium16Black,
-            ),
-            Icon(Icons.arrow_forward, color: AppColors.black),
-          ],
-        ),
+        child: child,
       ),
     );
   }

@@ -106,6 +106,17 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             SizedBox(height: 16),
             AuthActionButton(
+              gradientColors: [AppColors.neonBlue, AppColors.primary],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'ACCESS SECURE TERMINAL',
+                    style: AppStyles.medium16Black,
+                  ),
+                  Icon(Icons.arrow_forward, color: AppColors.black),
+                ],
+              ),
               onTap: () {
                 signUp();
               },
