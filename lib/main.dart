@@ -1,4 +1,6 @@
 import 'package:catch_a_phish/Core/utils/app_routes.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_screen.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_screen.dart';
 import 'package:catch_a_phish/firebase_options.dart';
 import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:catch_a_phish/Ui/auth/auth_screen.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.login: (context) => const AuthScreen(),
         AppRoutes.home: (context) => const HomeScreen(),
+        AppRoutes.messageScan: (context) => MessageScanScreen(),
+        AppRoutes.urlScan: (context) => UrlScanScreen(),
       },
     );
   }
