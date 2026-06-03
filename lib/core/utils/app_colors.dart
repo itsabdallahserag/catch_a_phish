@@ -7,11 +7,14 @@ class AppColors {
 
   // ─── Blacks ───────────────────────────────────────────
   static const Color black           = Color(0xFF000000);
+  static const Color blackOverlay20 = Color(0x33000000);
+  static const Color blackOverlay40 = Color(0x66000000);
   static const Color blackOverlay50  = Color(0x80000000); // opacity 50%
   static const Color blackOverlay65  = Color(0xA6000000); // opacity 65%
   static const Color blackOverlay80  = Color(0xCC000000); // opacity 80%
   static const Color richBlack       = Color(0xFF0A0A0A);
   static const Color richBlackOverlay80 = Color(0xCC0A0A0A); // opacity 80%
+  static const Color darkCharcoal = Color(0xFF2B2C28); // opacity 80%
 
   // ─── Greys ────────────────────────────────────────────
   static const Color grey            = Color(0xFF7F7F7F);
@@ -45,6 +48,7 @@ class AppColors {
   static const Color neonBlue        = Color(0xFF00B7FB);
   static const Color cyanBlue        = Color(0xFF01B2FA);
   static const Color electricBlue    = Color(0xFF0055FF);
+  static const Color lightBlue50 = Color(0x805ED0FF);
 
   // ─── Cyans ────────────────────────────────────────────
   static const Color cyan            = Color(0xFF00FFFF);
@@ -53,6 +57,8 @@ class AppColors {
   // ─── Greens ───────────────────────────────────────────
   static const Color green           = Color(0xFF43A047);
   static const Color neonGreen       = Color(0xFF00FF2F);
+  static const Color aquaGreen       = Color(0xFF02FE9F);
+
   static const Color neonGreenOverlay69 = Color(0xB000FF2F);
   static const Color glowGreen       = Color(0xFF6DFF93);
   static const Color mintGreen       = Color(0xFF9DFDBE);
@@ -63,8 +69,17 @@ class AppColors {
   static const Color redOverlay10    = Color(0x1AFF3B30); // opacity 10%
   static const Color coral           = Color(0xFFFF4D4D);
   static const Color pink            = Color(0xFFFF9E9F);
+  static const Color darkRed50 = Color(0x804A1F1F);
+  static const Color darkRed = Color(0xFF660000);
 
   // ─── Yellows & Ambers ─────────────────────────────────
   static const Color amber           = Color(0xFFFFB701);
   static const Color olive           = Color(0xFF4E4C00);
+  static const Color purple15 = Color(0x268C77FF);
+  static const Color mediumGrey2 = Color(0xFFA0A0A0);
+  static const Color mediumGrey3 = Color(0xFFBCBCBC);
+  static const Color lightGrey2 = Color(0xFFCCCCCC);
+
+  
+
 }
