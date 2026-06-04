@@ -42,6 +42,7 @@ dependencies:
   google_sign_in: ^6.2.1
   floating_bottom_navigation_bar: ^1.5.2
   percent_indicator: ^4.2.5
+  fluttertoast: ^9.1.0
   
 
 dev_dependencies:

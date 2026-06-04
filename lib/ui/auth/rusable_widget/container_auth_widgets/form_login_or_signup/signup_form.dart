@@ -1,4 +1,5 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
@@ -6,6 +7,7 @@ import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_social_widget.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -137,19 +139,54 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Future<void> signUp() async {
     if (formKey.currentState!.validate()) {
-      final success = await FirebaseUtils.signUpWithEmailAndPassword(
-        emailController.text,
-        passwordController.text,
+      AppDialogUtils.showLoading(
+        backgroundColor: AppColors.navyBackground,
+        dismissible: false,
+        context: context,
+        colorCircle: AppColors.skyBlue,
+        style: AppStyles.semiBold12SkyBlue,
       );
-      if (!mounted) return;
-      if (success) {
-        Navigator.pushNamed(context, AppRoutes.home);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Sign up failed. Please try again.'),
-            backgroundColor: AppColors.red,
-          ),
+
+      try {
+        UserCredential userCredential =
+            await FirebaseUtils.signUpWithEmailAndPassword(
+              emailController.text.trim(),
+              passwordController.text.trim(),
+            );
+
+        if (!mounted) return;
+
+        AppDialogUtils.hideLoading(context);
+
+        AppDialogUtils.showMessage(
+          dialogBackgroundColor: AppColors.navyBackground,
+          dismissible: false,
+          messageStyle: AppStyles.semiBold12SkyBlue,
+          titleStyle: AppStyles.semiBold16White,
+          posActionStyle: AppStyles.semiBold16White,
+          context: context,
+          title: 'Success',
+          message: 'Welcome ${userCredential.user?.email}',
+          posActionName: 'OK',
+          posActionCallBack: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.home);
+          },
+        );
+      } on FirebaseAuthException catch (e) {
+        if (!mounted) return;
+
+        AppDialogUtils.hideLoading(context);
+
+        AppDialogUtils.showMessage(
+          context: context,
+          title: 'Sign Up Failed',
+          message: e.message ?? 'Unknown Error',
+          dialogBackgroundColor: AppColors.navyBackground,
+          dismissible: false,
+          messageStyle: AppStyles.semiBold12SkyBlue,
+          titleStyle: AppStyles.semiBold16White,
+          posActionStyle: AppStyles.semiBold16White,
+          posActionName: 'OK',
         );
       }
     }
