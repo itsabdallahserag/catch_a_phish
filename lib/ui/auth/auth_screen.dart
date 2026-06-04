@@ -14,33 +14,32 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return  Scaffold(
+    return Scaffold(
       body: Container(
-            width: double.infinity,
-            height: double.infinity, // Background image for the entire screen
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(AppImages.primaryBackground),
-                fit: BoxFit.fill
-                ,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  SizedBox(height: height * 0.05),
-                  Image.asset(
-                    AppImages.splash,
-                    fit: BoxFit.cover,
-                    width: width * 1,
-                    height: height * 0.2,
-                  ),
-                  ContainerAuth(),
-                ],
-              ),
-            ),
+        width: double.infinity,
+        height: double.infinity, // Background image for the entire screen
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AppImages.primaryBackground),
+            fit: BoxFit.fill,
           ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              SizedBox(height: height * 0.05),
+              Image.asset(
+                AppImages.splash,
+                fit: BoxFit.cover,
+                width: width * 1,
+                height: height * 0.2,
+              ),
+              ContainerAuth(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
