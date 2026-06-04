@@ -131,6 +131,22 @@ All theming is centralized in `AppColors`, `AppStyles`, and `AppImages`.
 
 
 
+## 7) feat(auth):
+integrate Flutter Toast and Dialog Utils into authentication flow
+
+- Added reusable Dialog Utils for alerts, confirmations, and loading states
+- Integrated Flutter Toast for success and error notifications
+- Applied toast and dialog handling across authentication screens
+- Improved user feedback and overall authentication UX
+- screenshoots
+<img width="481" height="921" alt="Screenshot 2026-06-04 040040" src="https://github.com/user-attachments/assets/a0e9b479-5727-4614-82d0-045cb25615f6" />
+<img width="442" height="909" alt="Screenshot 2026-06-04 035958" src="https://github.com/user-attachments/assets/cd597270-ed3f-4b82-845f-ec0778594f6d" />
+<img width="505" height="924" alt="Screenshot 2026-06-04 035942" src="https://github.com/user-attachments/assets/51b4abc7-e054-4f88-a08a-008dd2c9492f" />
+
+
+
+
+
             
   
 
