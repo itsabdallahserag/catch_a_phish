@@ -8,6 +8,8 @@ class Engaged extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(
         bottom: 16,left: 24,top: 16
@@ -26,6 +28,7 @@ class Engaged extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(AppImages.iconEngaged),
+          SizedBox(height: height*0.02,),
           Row(
             children: [
               Text('System Shield: ',style: AppStyles.semiBold24White,),

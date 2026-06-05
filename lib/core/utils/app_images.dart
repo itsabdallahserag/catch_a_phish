@@ -19,5 +19,7 @@ class AppImages {
   static const String iconTrue = 'assets/images/icontrue.png';
   static const String iconAi = 'assets/images/iconai.png';
   static const String iconReport = 'assets/images/iconreport.png';
+  static const String logo = 'assets/images/logo.png';
+
 
 }
