@@ -143,6 +143,34 @@ integrate Flutter Toast and Dialog Utils into authentication flow
 <img width="442" height="909" alt="Screenshot 2026-06-04 035958" src="https://github.com/user-attachments/assets/cd597270-ed3f-4b82-845f-ec0778594f6d" />
 <img width="505" height="924" alt="Screenshot 2026-06-04 035942" src="https://github.com/user-attachments/assets/51b4abc7-e054-4f88-a08a-008dd2c9492f" />
 
+## 8) PhishX Branding
+- Updated the application name to **PhishX**.
+- Added a custom launcher icon for Android and iOS.
+
+### Message Analysis API Integration
+- Added API constants and endpoints configuration.
+- Implemented API manager for handling phishing message analysis requests.
+- Created response models for parsing API results.
+
+### Enhanced Message Scanning
+- Integrated real-time message analysis functionality.
+- Added loading state handling during API requests.
+- Implemented error handling for failed requests.
+- Displayed threat analysis results dynamically after scanning.
+
+### Improved User Experience
+- Added smooth result animations using `animate_do`.
+- Enhanced UI responsiveness and scan workflow.
+- Prevented duplicate requests while analysis is in progress.
+
+### Dependencies Added
+- `animate_do` for UI animations.
+- `flutter_launcher_icons` for custom application icons.
+<img width="546" height="1000" alt="Screenshot 2026-06-05 170827" src="https://github.com/user-attachments/assets/25113c3f-b73b-4c04-af71-2ee12c84e4ba" />
+<img width="554" height="964" alt="Screenshot 2026-06-05 165310" src="https://github.com/user-attachments/assets/f9a95486-5dac-403e-830b-1a27ad9abe6f" />
+
+
+
 
 
 
