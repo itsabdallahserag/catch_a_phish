@@ -37,18 +37,25 @@ class HomeTab extends StatelessWidget {
         ),
       backgroundColor: AppColors.transparent,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TacticalOverView(),
-            SizedBox(height: height*0.02,),
-            Engaged(),
-            SizedBox(height: height*0.02,),
-            MessageScanButton(),
-            SizedBox(height: height*0.02,),
-            UrlScanButton()
-          ],
-            ),
+        padding:  EdgeInsets.only(
+          top: height*0.01,
+          bottom: height*0.08,
+          left: width*0.01,
+          right: width*0.01
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TacticalOverView(),
+              SizedBox(height: height*0.02,),
+              Engaged(),
+              SizedBox(height: height*0.02,),
+              MessageScanButton(),
+              SizedBox(height: height*0.02,),
+              UrlScanButton()
+            ],
+              ),
+        ),
       )   );
   }
 }

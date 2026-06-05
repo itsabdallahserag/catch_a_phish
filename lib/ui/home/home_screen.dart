@@ -38,10 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
             shadowColor: Colors.transparent,
           ),
           child: BottomNavigationBar(
-
             elevation: 0,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.transparent,
+            backgroundColor: AppColors.blackOverlay65,
             selectedLabelStyle: AppStyles.medium10midnightBlue,
             unselectedLabelStyle: AppStyles.medium10mediumGrey,
             currentIndex: selectedIndex,
@@ -56,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               buildBottomNavigationBarItem(2, AppImages.iconProfile, 'Profile'),
               buildBottomNavigationBarItem(
                 3,
+
                 AppImages.iconSettings,
                 'Settings',
               ),

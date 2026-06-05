@@ -9,6 +9,8 @@ class UrlScanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -55,6 +57,7 @@ class UrlScanButton extends StatelessWidget {
                   Spacer()
               ],
             ),
+            SizedBox(height: height*0.03,),
             Text('URL Scan',style: AppStyles.semiBold20White,),
             Text('Check links before you click. Cross-references 50+ threat databases.',style: AppStyles.semiLight12LightGrey,),
           ],

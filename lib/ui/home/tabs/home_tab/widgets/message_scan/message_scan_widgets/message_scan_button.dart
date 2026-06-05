@@ -9,6 +9,8 @@ class MessageScanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -51,6 +53,7 @@ class MessageScanButton extends StatelessWidget {
                 Spacer(),
               ],
             ),
+            SizedBox(height: height*0.02,),
             Text('Message Scan', style: AppStyles.semiBold20White),
             Text(
               'Analyze SMS, email or technical text payloads for malicious strings.',
