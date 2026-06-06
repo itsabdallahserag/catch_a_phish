@@ -6,7 +6,7 @@ import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/threat_analysis_report.dart';
 import 'package:catch_a_phish/api/api_manager.dart';
-import 'package:catch_a_phish/api/models/PredictResponce.dart';
+import 'package:catch_a_phish/api/models/message/PredictResponce.dart';
 import 'package:flutter/material.dart';
 
 class MessageScanScreen extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/phishing_prob.dart';
-import 'package:catch_a_phish/api/models/PredictResponce.dart';
+import 'package:catch_a_phish/api/models/message/PredictResponce.dart';
 import 'package:flutter/material.dart';
 
 class ThreatAnalysisReport extends StatelessWidget {
