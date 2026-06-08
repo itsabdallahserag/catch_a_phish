@@ -169,6 +169,28 @@ integrate Flutter Toast and Dialog Utils into authentication flow
 <img width="546" height="1000" alt="Screenshot 2026-06-05 170827" src="https://github.com/user-attachments/assets/25113c3f-b73b-4c04-af71-2ee12c84e4ba" />
 <img width="554" height="964" alt="Screenshot 2026-06-05 165310" src="https://github.com/user-attachments/assets/f9a95486-5dac-403e-830b-1a27ad9abe6f" />
 
+## 9) URL Scan Improvements
+Description
+
+This update enhances the URL Scan feature by improving input validation, API error handling, and screenshot rendering to provide a smoother and more reliable user experience.
+
+Changes
+Validates URLs to ensure they use HTTP/HTTPS and contain a valid host.
+Automatically dismisses the keyboard before starting the scan.
+Clears previous scan results before performing a new scan.
+Displays API error messages (detail) using a SnackBar.
+Adds mounted checks before updating the UI after asynchronous operations.
+Improves exception handling with debugPrint for easier debugging.
+Requests a screenshot only when a valid screenshotScanId is available.
+Displays the screenshot only when its status is ready and a valid image URL exists.
+Uses CachedNetworkImage with loading and error placeholders for better image handling.
+Ensures the loading indicator is stopped correctly in every execution path.
+Screenshot
+<img width="400" height="848" alt="Screenshot 2026-06-08 053218" src="https://github.com/user-attachments/assets/415add8b-700f-43eb-9103-76813cebb3e9" />
+<img width="407" height="847" alt="Screenshot 2026-06-08 053236" src="https://github.com/user-attachments/assets/30cc7994-03f0-40f8-9a0f-e0209739c5f1" />
+
+
+
 
 
 
