@@ -186,7 +186,9 @@ Displays the screenshot only when its status is ready and a valid image URL exis
 Uses CachedNetworkImage with loading and error placeholders for better image handling.
 Ensures the loading indicator is stopped correctly in every execution path.
 Screenshot
+
 <img width="400" height="848" alt="Screenshot 2026-06-08 053218" src="https://github.com/user-attachments/assets/415add8b-700f-43eb-9103-76813cebb3e9" />
+
 <img width="407" height="847" alt="Screenshot 2026-06-08 053236" src="https://github.com/user-attachments/assets/30cc7994-03f0-40f8-9a0f-e0209739c5f1" />
 
 
