@@ -28,7 +28,7 @@ class LinearProbability extends StatelessWidget {
                         children: [
                           Image.asset(iconName,color: iconName == AppImages.iconRisk ? AppColors.red : AppColors.aquaGreen, height: 20, width: 20),
                           SizedBox(width: width * 0.02),
-                          Text(iconName == AppImages.iconRisk ? 'PHISHING PROBABILITY' : 'Legitimate PROBABILITY',
+                          Text(iconName == AppImages.iconRisk ? 'PHISHING PROBABILITY' : 'LEGITIMATE PROBABILITY',
                            style: iconName == AppImages.iconRisk ? AppStyles.semiBold12LightGrey2 :AppStyles.semiBold12AquaGreen),
                           Spacer(),
                           Text('${(percentage * 100).toInt()}%', style: iconName == AppImages.iconRisk ? AppStyles.black12Coral : AppStyles.black12AquaGreen),

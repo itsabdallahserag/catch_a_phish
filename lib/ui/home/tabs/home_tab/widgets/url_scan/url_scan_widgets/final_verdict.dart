@@ -4,7 +4,14 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class FinalVerdict extends StatelessWidget {
-  const FinalVerdict({super.key});
+  final String prediction;
+  final String risklevel;
+
+  const FinalVerdict({
+    super.key,
+    required this.prediction,
+    required this.risklevel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +38,68 @@ class FinalVerdict extends StatelessWidget {
             ],
           ),
           SizedBox(height: height * 0.02),
-          Text('URL APPEARS SAFE', style: AppStyles.bold20CayanBlue),
-          SizedBox(height: height * 0.02),
           Text(
-            'No active phishing signatures detected in global databases.',
-            style: AppStyles.regular12MediumGrey3,
+            prediction != "phishing"
+                ? 'URL APPEARS SAFE'
+                : 'URL APPEARS UNSAFE',
+            style: AppStyles.bold20CayanBlue,
+          ),
+          SizedBox(height: height * 0.02),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: prediction != "phishing"
+                        ? AppColors.purple15
+                        : AppColors.darkRed
+                        ,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.security_sharp,
+                        color: AppColors.lightGrey2,
+                        size: 22,
+                      ),
+                      Text(
+                        "Prediction : $prediction",
+                        style: AppStyles.semiBold12LightGrey2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: width * 0.01),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: prediction != "phishing"
+                        ? AppColors.purple15
+                        : AppColors.darkRed,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.fireplace_outlined,
+                        color: AppColors.lightGrey2,
+                        size: 22,
+                      ),
+                      Text(
+                        "RISK LEVEL : $risklevel",
+                        style: AppStyles.semiBold12LightGrey2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
