@@ -2,10 +2,12 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
-import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
-import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/ai_analysis.dart';
-import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/final_verdict.dart';
-import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/linear_probability.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_content_button.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_scan_result.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_text_field.dart';
+import 'package:catch_a_phish/api/api_manager.dart';
+import 'package:catch_a_phish/api/models/url/ScreenShootResponce.dart';
+import 'package:catch_a_phish/api/models/url/UrlResponce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,12 +19,17 @@ class UrlScanScreen extends StatefulWidget {
 }
 
 class _UrlScanScreenState extends State<UrlScanScreen> {
+  var formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  UrlResponce? urlResult;
+  ScreenShootResponce? screenResult;
   TextEditingController controller = TextEditingController();
-   @override
-    dispose() {
-      controller.dispose();
-      super.dispose();
-    }
+  @override
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -47,110 +54,27 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
         body: Padding(
           padding: const EdgeInsets.all(12.0),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.purple15,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: CustomTextField(
-                    borderSideColor: AppColors.transparent,
-                    controller: controller,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a URL to scan';
-                      }
-                      return null;
-                    },
-                    cursorColor: AppColors.white,
-                    hintStyle: AppStyles.regular16White,
-                    style: AppStyles.regular16White,
-                    hintText: 'Enter URL to scan',
-                    prefixIcon: Image.asset(
-                      AppImages.iconUrl,
-                      height: 24,
-                      width: 24,
-                    ),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.darkCharcoal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        onPressed: () => paste(),
-                        child: Text("PASTE", style: AppStyles.bold10MintGreen),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: height * 0.02),
-                AuthActionButton(
-                  gradientColors: [AppColors.neonBlue, AppColors.midnightBlue],
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        AppImages.iconEngaged,
-                        color: AppColors.black,
-                        height: 20,
-                        width: 20,
-                      ),
-                      SizedBox(width: width * 0.02),
-                      Text('Scan URL', style: AppStyles.medium16Black),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Urltextfield(controller:controller ,pasteOnPressed:() => paste() ,),
+                  SizedBox(height: height * 0.02),
+                  AuthActionButton(
+                    gradientColors: [
+                      AppColors.neonBlue,
+                      AppColors.midnightBlue,
                     ],
+                    onTap: isLoading ? null : checkUrl,
+                    child: isLoading
+                        ? CircularProgressIndicator(color: AppColors.white)
+                        :UrlContentButton()
                   ),
-                  onTap: () {},
-                ),
-                SizedBox(height: height * 0.02),
-                FinalVerdict(),
-                SizedBox(height: height * 0.02),
-                AiAnalysis(),
-                SizedBox(height: height * 0.02),
-                LinearProbability(iconName: AppImages.iconRisk, percentage: 0.5),
-                SizedBox(height: height * 0.02),
-                LinearProbability(iconName: AppImages.iconTrue, percentage: 0.9),
-                SizedBox(height: height * 0.02),
-                Text(
-                  'Screenshot of the URL\'s landing page',
-                  style: AppStyles.regular12MediumGrey3,
-                  textAlign: TextAlign.start,
-                ),
-                SizedBox(height: height * 0.02),
-                Container(
-                  height: height * 0.3,
-                  clipBehavior: Clip.antiAlias,
-                  padding: const EdgeInsets.all(12.0),
-                  decoration: BoxDecoration(
-                    color: AppColors.blackOverlay50,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Image.asset(AppImages.splash, height: height * 0.08, width: double.infinity, fit: BoxFit.contain),
-                ),
-                SizedBox(height: height * 0.02),
-                AuthActionButton(
-                  borderColor: AppColors.red,
-                  gradientColors: [AppColors.darkRed50, AppColors.darkRed50],
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(AppImages.iconReport, height: 24, width: 24),
-                      SizedBox(width: width * 0.02),
-                      Text('REPORT THIS URL', style: AppStyles.medium14Red),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                SizedBox(height: height * 0.02),
-                Text(
-                  'Analysis based on real-time heuristics and crowdsourced intelligence. Always verify the sender of the link.',
-                  style: AppStyles.regular12MediumGrey3,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  urlResult != null
+                      ? UrlScanResult(screenResult: screenResult,urlResult:urlResult ,)
+                      : SizedBox.shrink(),
+                ],
+              ),
             ),
           ),
         ),
@@ -162,6 +86,71 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
     ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
     if (data != null) {
       controller.text = data.text!;
+    }
+  }
+
+  Future<void> checkUrl() async {
+    FocusScope.of(context).unfocus();
+    if (!formKey.currentState!.validate()) return;
+
+    setState(() {
+      isLoading = true;
+      urlResult = null;
+      screenResult = null;
+    });
+
+    try {
+      final response = await ApiManager.urlCheck(controller.text.trim());
+      if (!mounted) return;
+
+      if (response.detail != null) {
+        setState(() {
+          urlResult = null;
+          screenResult = null;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text(response.detail!),
+          ),
+        );
+
+        return;
+      }
+
+      ScreenShootResponce? screenResponse;
+
+      if (response.screenshotScanId != null) {
+        screenResponse = await ApiManager.getScreenShoot(
+          response.screenshotScanId!,
+        );
+      }
+      if (!mounted) return;
+
+      setState(() {
+        urlResult = response;
+        screenResult = screenResponse;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+
+      if (!mounted) return;
+
+      setState(() {
+        urlResult = null;
+        screenResult = null;
+      });
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Failed to scan URL")));
+    } finally {
+      if (!mounted) return;
+
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }
