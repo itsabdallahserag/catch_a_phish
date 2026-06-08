@@ -53,7 +53,7 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
       });
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
