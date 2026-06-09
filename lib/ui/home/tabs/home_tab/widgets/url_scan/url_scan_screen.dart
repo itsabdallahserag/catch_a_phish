@@ -1,10 +1,12 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_content_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_scan_result.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_text_field.dart';
+import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/webview/web_view_screen.dart';
 import 'package:catch_a_phish/api/api_manager.dart';
 import 'package:catch_a_phish/api/models/url/ScreenShootResponce.dart';
 import 'package:catch_a_phish/api/models/url/UrlResponce.dart';
@@ -21,11 +23,19 @@ class UrlScanScreen extends StatefulWidget {
 class _UrlScanScreenState extends State<UrlScanScreen> {
   var formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  bool canOpenWebsite = false;
+  bool isUrlValid = false;
   UrlResponce? urlResult;
   ScreenShootResponce? screenResult;
   TextEditingController controller = TextEditingController();
   @override
-  dispose() {
+  void initState() {
+    super.initState();
+    setupControllerListener();
+  }
+
+  @override
+  void dispose() {
     controller.dispose();
     super.dispose();
   }
@@ -33,7 +43,6 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -58,26 +67,85 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
               key: formKey,
               child: Column(
                 children: [
-                  Urltextfield(controller:controller ,pasteOnPressed:() => paste() ,),
+                  Urltextfield(controller: controller, pasteOnPressed: paste),
                   SizedBox(height: height * 0.02),
                   AuthActionButton(
                     gradientColors: [
                       AppColors.neonBlue,
                       AppColors.midnightBlue,
                     ],
-                    onTap: isLoading ? null : checkUrl,
+                    onTap: (!isUrlValid || isLoading)
+                        ? null
+                        : checkUrl, // focus used or not and ya abdallah
                     child: isLoading
-                        ? CircularProgressIndicator(color: AppColors.white)
-                        :UrlContentButton()
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:  [
+                              SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: AppColors.black,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Scanning...",
+                                style: AppStyles.medium16Black,
+                              ),
+                            ],
+                          )
+                        : UrlContentButton(),
                   ),
                   urlResult != null
-                      ? UrlScanResult(screenResult: screenResult,urlResult:urlResult ,)
-                      : SizedBox.shrink(),
+                      ? UrlScanResult(
+                          screenResult: screenResult,
+                          urlResult: urlResult,
+                        )
+                      : const SizedBox.shrink(),
+                  if (canOpenWebsite)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: AuthActionButton(
+                        gradientColors: [
+                          AppColors.neonBlue,
+                          AppColors.midnightBlue,
+                        ],
+                        onTap: openSafePreview,
+                        child: const Text(
+                          "Open Safe Preview",
+                          style: AppStyles.medium16Black,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void setupControllerListener() {
+    controller.addListener(() {
+      setState(() {
+        isUrlValid = controller.text.trim().isNotEmpty;
+      });
+    });
+  }
+
+  void openSafePreview() {
+    if (controller.text.trim().isEmpty) return;
+    if (!canOpenWebsite) {
+        AppDialogUtils.showMessage(context: context, message: "Blocked: URL marked as unsafe");
+      return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => WebViewScreen(url: controller.text.trim()),
       ),
     );
   }
@@ -92,65 +160,69 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
   Future<void> checkUrl() async {
     FocusScope.of(context).unfocus();
     if (!formKey.currentState!.validate()) return;
+    startLoading();
+    try {
+      final response = await ApiManager.urlCheck(controller.text.trim());
+      if (!mounted) return;
+      if (response.detail != null) {
+        AppDialogUtils.showMessage(context: context, message: response.detail!);
+        return;
+      }
+      canOpenWebsite = isSafeWebsite(response.prediction);
+      final screenResponse = await fetchScreenshot(response.screenshotScanId);
+      if (!mounted) return;
+      updateResults(response, screenResponse);
+    } catch (e) {
+      debugPrint(e.toString());
+      if (!mounted) return;
+      resetResults();
+      AppDialogUtils.showMessage(
+        context: context,
+        message: "Failed to scan URL",
+      );
+    } finally {
+      stopLoading();
+    }
+  }
 
+  void startLoading() {
     setState(() {
       isLoading = true;
       urlResult = null;
       screenResult = null;
+      canOpenWebsite = false;
     });
+  }
 
-    try {
-      final response = await ApiManager.urlCheck(controller.text.trim());
-      if (!mounted) return;
+  void stopLoading() {
+    if (!mounted) return;
 
-      if (response.detail != null) {
-        setState(() {
-          urlResult = null;
-          screenResult = null;
-        });
+    setState(() {
+      isLoading = false;
+    });
+  }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            behavior: SnackBarBehavior.floating,
-            content: Text(response.detail!),
-          ),
-        );
+  void resetResults() {
+    setState(() {
+      urlResult = null;
+      screenResult = null;
+      canOpenWebsite = false;
+    });
+  }
 
-        return;
-      }
+  bool isSafeWebsite(String? prediction) {
+    return prediction?.toLowerCase() == "legitimate";
+  }
 
-      ScreenShootResponce? screenResponse;
+  Future<ScreenShootResponce?> fetchScreenshot(String? id) async {
+    if (id == null) return null;
+    return ApiManager.getScreenShoot(id);
+  }
 
-      if (response.screenshotScanId != null) {
-        screenResponse = await ApiManager.getScreenShoot(
-          response.screenshotScanId!,
-        );
-      }
-      if (!mounted) return;
-
-      setState(() {
-        urlResult = response;
-        screenResult = screenResponse;
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-
-      if (!mounted) return;
-
-      setState(() {
-        urlResult = null;
-        screenResult = null;
-      });
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Failed to scan URL")));
-    } finally {
-      if (!mounted) return;
-
-      setState(() {
-        isLoading = false;
-      });
-    }
+  void updateResults(UrlResponce response, ScreenShootResponce? screen) {
+    setState(() {
+      urlResult = response;
+      screenResult = screen;
+    });
   }
 }

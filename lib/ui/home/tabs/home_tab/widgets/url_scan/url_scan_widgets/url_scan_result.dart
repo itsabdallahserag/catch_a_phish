@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
