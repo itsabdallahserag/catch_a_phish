@@ -197,7 +197,17 @@ When a URL is scanned and comes back clean, the app offers an Open Safe Preview 
 While browsing, the screen monitors every navigation event in real time. If the page tries to redirect to a different domain, the request is blocked immediately and the user sees a warning. The original domain is always shown in a green banner at the top so the user knows exactly which site they are viewing.
 The component also normalizes hosts before comparing them (stripping www. and ignoring case) to close common bypass tricks, and guards against malformed URLs that could cause silent failures.
 If the scan verdict is anything other than legitimate, this screen is never opened.
+
 <img width="527" height="963" alt="Screenshot 2026-06-09 143628" src="https://github.com/user-attachments/assets/83093363-9923-46e8-88d0-d7cc26302b1f" />
+
+## 11) Scan History Tab
+The History tab displays a chronological log of all scans the user has performed. Each entry shows the scanned URL or message, the time elapsed since the scan, and a colored verdict badge — green for clean, red for malicious.
+At the top, the Tactical Overview card gives a quick summary of total scans and threats blocked pulled from the user's Firestore record.
+The Clear button will wipe the user's scan history from Firestore. The search icon in the appbar allows filtering through past results.
+Currently the list is static (hardcoded 10 items with placeholder data). The next step is connecting ItemHistory to real Firestore data — each item will be built from a ScanResult document stored under the current user's UID after every API call.
+
+<img width="496" height="928" alt="Screenshot 2026-06-09 195550" src="https://github.com/user-attachments/assets/392c07f8-d819-4ec6-933d-a36551ec652d" />
+
 
 
 
