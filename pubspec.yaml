@@ -46,6 +46,7 @@ dependencies:
   http: ^1.6.0
   animate_do: ^5.1.0
   cached_network_image: ^3.4.1
+  webview_flutter: ^4.10.0
   
 
 dev_dependencies:
