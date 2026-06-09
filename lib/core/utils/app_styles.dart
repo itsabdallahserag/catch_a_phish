@@ -102,6 +102,11 @@ class AppStyles {
     fontSize: 10,
     fontWeight: FontWeight.w700,
   );
+  static const TextStyle bold12Red = TextStyle(
+    color: AppColors.red,
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+  );
   static const TextStyle bold10White = TextStyle(
     color: AppColors.white,
     fontSize: 10,
@@ -165,6 +170,11 @@ class AppStyles {
   );
   static const TextStyle semiBold12Coral = TextStyle(
     color: AppColors.coral,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle semiBold12Primary = TextStyle(
+    color: AppColors.primary,
     fontSize: 12,
     fontWeight: FontWeight.w600,
   );
