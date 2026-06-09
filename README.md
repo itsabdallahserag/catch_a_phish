@@ -192,6 +192,15 @@ Screenshot
 <img width="407" height="847" alt="Screenshot 2026-06-08 053236" src="https://github.com/user-attachments/assets/30cc7994-03f0-40f8-9a0f-e0209739c5f1" />
 
 
+## 10) Safe Preview (WebView)Safe Preview (WebView)
+When a URL is scanned and comes back clean, the app offers an Open Safe Preview button that loads the site inside a built-in browser instead of sending the user to an external app.
+While browsing, the screen monitors every navigation event in real time. If the page tries to redirect to a different domain, the request is blocked immediately and the user sees a warning. The original domain is always shown in a green banner at the top so the user knows exactly which site they are viewing.
+The component also normalizes hosts before comparing them (stripping www. and ignoring case) to close common bypass tricks, and guards against malformed URLs that could cause silent failures.
+If the scan verdict is anything other than legitimate, this screen is never opened.
+<img width="527" height="963" alt="Screenshot 2026-06-09 143628" src="https://github.com/user-attachments/assets/83093363-9923-46e8-88d0-d7cc26302b1f" />
+
+
+
 
 
 
