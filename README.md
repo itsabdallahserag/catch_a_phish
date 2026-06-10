@@ -220,7 +220,7 @@ The tab also contains a Sign Out button that calls Firebase Auth signOut() and r
 Currently the data is static. The next step is wiring each widget to the user's real Firestore data using their UID.
 <img width="463" height="937" alt="Screenshot 2026-06-10 101509" src="https://github.com/user-attachments/assets/1bb308ed-c692-4d5d-9b75-4415da7233cf" />
 
-## 12) Built the Settings tab with fully reusable widgets, split into three dedicated section cards — Security, Preferences, and Resources — each rendered independently for clean separation.
+## 13) Built the Settings tab with fully reusable widgets, split into three dedicated section cards — Security, Preferences, and Resources — each rendered independently for clean separation.
 Files added:
 
 settings_tab.dart — main screen that composes all three section cards
