@@ -208,6 +208,19 @@ Currently the list is static (hardcoded 10 items with placeholder data). The nex
 
 <img width="496" height="928" alt="Screenshot 2026-06-09 195550" src="https://github.com/user-attachments/assets/392c07f8-d819-4ec6-933d-a36551ec652d" />
 
+## 12) Profile Tab
+The Profile tab gives the user a personal dashboard showing their account details and scan statistics.
+It is split into three main components:
+
+profile_image.dart — displays the user's avatar with their name and email pulled from Firebase Auth.
+statistics_cards.dart — shows two stat cards: total scans performed and total threats blocked, both fetched from the user's Firestore document.
+security_item.dart — lists the account security options such as Enhanced Protection, Authentication, and Alert Preferences, each navigating to its own settings screen.
+
+The tab also contains a Sign Out button that calls Firebase Auth signOut() and redirects the user back to the Login screen.
+Currently the data is static. The next step is wiring each widget to the user's real Firestore data using their UID.
+<img width="463" height="937" alt="Screenshot 2026-06-10 101509" src="https://github.com/user-attachments/assets/1bb308ed-c692-4d5d-9b75-4415da7233cf" />
+
+
 
 
 
