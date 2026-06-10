@@ -1,7 +1,6 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SecurityItem extends StatelessWidget {
   final IconData icon;
