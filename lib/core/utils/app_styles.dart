@@ -128,6 +128,11 @@ class AppStyles {
     fontSize: 12,
     fontWeight: FontWeight.w300,
   );
+  static const TextStyle light30White = TextStyle(
+    color: AppColors.white,
+    fontSize: 30,
+    fontWeight: FontWeight.w300,
+  );
   static const TextStyle semiLight12LightGrey = TextStyle(
     color: AppColors.lightGrey,
     fontSize: 12,

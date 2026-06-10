@@ -37,12 +37,7 @@ class HomeTab extends StatelessWidget {
         ),
       backgroundColor: AppColors.transparent,
       body: Padding(
-        padding:  EdgeInsets.only(
-          top: height*0.01,
-          bottom: height*0.08,
-          left: width*0.01,
-          right: width*0.01
-        ),
+        padding:  EdgeInsets.all(12),
         child: SingleChildScrollView(
           child: Column(
             children: [
