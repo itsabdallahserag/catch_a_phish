@@ -1,19 +1,56 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
+import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/profile_image.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/security_item.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/statistics_cards.dart';
 import 'package:flutter/material.dart';
 
-class ProfileTab extends StatelessWidget {
+class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
+
+  @override
+  State<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends State<ProfileTab> {
+  UserModel? user;
+  bool isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    try {
+      user = await FirebaseUtils.readUser();
+    } catch (e) {
+      user = null;
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
+    if (user == null) {
+      return const Center(child: Text("No user found"));
+    }
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.02,
@@ -24,16 +61,16 @@ class ProfileTab extends StatelessWidget {
           children: [
             ProfileImage(),
             SizedBox(height: height * 0.02),
-            Text('Serag', style: AppStyles.light24White),
+            Text(user!.name ?? '', style: AppStyles.light24White),
             SizedBox(height: height * 0.01),
-            Text('Serag862@gmail.com', style: AppStyles.semiBold16MediumGrey2),
+            Text(user!.email!, style: AppStyles.semiBold16MediumGrey2),
             SizedBox(height: height * 0.02),
-            StatisticsCards(),
+            StatisticsCards(threatsBlocked: user!.threatsBlocked,totalScans: user!.totalScans,),
             SizedBox(height: height * 0.02),
             Row(
               children: [
                 Text('Account Security', style: AppStyles.medium10mediumGrey),
-                Spacer()
+                Spacer(),
               ],
             ),
             SizedBox(height: height * 0.01),
@@ -57,12 +94,38 @@ class ProfileTab extends StatelessWidget {
             SizedBox(height: height * 0.02),
             AuthActionButton(
               onTap: () {
-                
+                AppDialogUtils.showMessage(
+                  context: context,
+                  message: 'Are you sure you want to sign out?',
+                  title: 'Sign Out',
+                  negActionName: 'cancel',
+                  negActionCallBack: () {
+                    Navigator.pop(context);
+                  },
+                  posActionName: 'signout',
+                  posActionCallBack: () async {
+                    Navigator.of(context).pop();
+
+                    final navigator = Navigator.of(context);
+
+                    await FirebaseUtils.signOut();
+
+                    if (!mounted) return;
+
+                    navigator.pushNamedAndRemoveUntil(
+                      AppRoutes.login,
+                      (route) => false,
+                    );
+                  },
+                );
               },
               borderColor: AppColors.red,
-              gradientColors:[AppColors.blackOverlay80,AppColors.blackOverlay80,] ,
-              child: Text('Sign Out',style:AppStyles.medium14Red,) ,
-                )
+              gradientColors: [
+                AppColors.blackOverlay80,
+                AppColors.blackOverlay80,
+              ],
+              child: Text('Sign Out', style: AppStyles.medium14Red),
+            ),
           ],
         ),
       ),
