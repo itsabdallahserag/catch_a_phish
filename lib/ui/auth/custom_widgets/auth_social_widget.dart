@@ -4,6 +4,7 @@ import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -29,16 +30,9 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
               decoration: BoxDecoration(
                 color: AppColors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: AppColors.grey,
-                  width: 1,
-                ),
+                border: Border.all(color: AppColors.grey, width: 1),
               ),
-              child: Image.asset(
-                AppImages.google,
-                width: 24,
-                height: 24,
-              ),
+              child: Image.asset(AppImages.google, width: 24, height: 24),
             ),
           ),
         ),
@@ -53,16 +47,9 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
               decoration: BoxDecoration(
                 color: AppColors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: AppColors.grey,
-                  width: 1,
-                ),
+                border: Border.all(color: AppColors.grey, width: 1),
               ),
-              child: Image.asset(
-                AppImages.gitHub,
-                width: 24,
-                height: 24,
-              ),
+              child: Image.asset(AppImages.gitHub, width: 24, height: 24),
             ),
           ),
         ),
@@ -80,8 +67,18 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
     );
 
     try {
-      UserCredential userCredential =
-          await FirebaseUtils.loginByGitHub();
+      final userCredential = await FirebaseUtils.loginByGitHub();
+
+      await FirebaseUtils.addUserToFireStore(
+        UserModel(
+          uid: userCredential.user!.uid,
+          name:
+              userCredential.additionalUserInfo?.username ??
+              userCredential.user?.displayName ??
+              "No Name",
+          email: userCredential.user!.email,
+        ),
+      );
 
       if (!mounted) return;
 
@@ -95,13 +92,9 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionStyle: AppStyles.semiBold16White,
         posActionName: 'OK',
         posActionCallBack: () {
-          Navigator.pushReplacementNamed(
-            context,
-            AppRoutes.home,
-          );
+          Navigator.pushReplacementNamed(context, AppRoutes.home);
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -117,7 +110,6 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionStyle: AppStyles.semiBold16White,
         posActionName: 'OK',
       );
     }
@@ -133,15 +125,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
     );
 
     try {
-      UserCredential? userCredential =
-          await FirebaseUtils.loginByGoogle();
+      final userCredential = await FirebaseUtils.loginByGoogle();
 
-      if (!mounted) return;
-
-      AppDialogUtils.hideLoading(context);
-
-      //login failed or cancelled by user
       if (userCredential == null) {
+        if (!mounted) return;
+
+        AppDialogUtils.hideLoading(context);
+
         AppDialogUtils.showMessage(
           context: context,
           title: 'Cancelled',
@@ -150,13 +140,23 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
           dismissible: false,
           titleStyle: AppStyles.semiBold16White,
           messageStyle: AppStyles.semiBold12SkyBlue,
-          posActionStyle: AppStyles.semiBold16White,
           posActionName: 'OK',
         );
         return;
       }
 
-      //login succses
+      await FirebaseUtils.addUserToFireStore(
+        UserModel(
+          uid: userCredential.user!.uid,
+          name: userCredential.user?.displayName ?? "No Name",
+          email: userCredential.user!.email,
+        ),
+      );
+
+      if (!mounted) return;
+
+      AppDialogUtils.hideLoading(context);
+
       AppDialogUtils.showMessage(
         context: context,
         title: 'Success',
@@ -165,13 +165,9 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionStyle: AppStyles.semiBold16White,
         posActionName: 'OK',
         posActionCallBack: () {
-          Navigator.pushReplacementNamed(
-            context,
-            AppRoutes.home,
-          );
+          Navigator.pushReplacementNamed(context, AppRoutes.home);
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -187,7 +183,6 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionStyle: AppStyles.semiBold16White,
         posActionName: 'OK',
       );
     }
