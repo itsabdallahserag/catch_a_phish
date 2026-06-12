@@ -4,6 +4,7 @@ import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_social_widget.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
@@ -19,6 +20,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -31,6 +33,25 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text('Enter your Name', style: AppStyles.regular12White),
+            SizedBox(height: 8),
+            CustomTextField(
+              validator: (text) {
+                if (text == null || text.isEmpty) {
+                  return 'Name is required';
+                }
+                return null;
+              },
+              controller: nameController,
+              hintText: 'Name',
+              keyboardType: TextInputType.name,
+              prefixIcon: Icon(
+                Icons.person,
+                color: AppColors.primary,
+                size: 18,
+              ),
+            ),
+            SizedBox(height: 16),
             Text('Enter your email', style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
@@ -153,6 +174,16 @@ class _SignUpFormState extends State<SignUpForm> {
               emailController.text.trim(),
               passwordController.text.trim(),
             );
+        await userCredential.user!.updateDisplayName(
+          nameController.text.trim(),
+        );
+        await FirebaseUtils.addUserToFireStore(
+          UserModel(
+            uid: userCredential.user!.uid,
+            name: nameController.text.trim(),
+            email: userCredential.user!.email,
+          ),
+        );
 
         if (!mounted) return;
 
