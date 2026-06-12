@@ -231,6 +231,18 @@ settings_resources_card.dart — Resources section (Help Center, Privacy Policy)
 
 <img width="431" height="913" alt="image" src="https://github.com/user-attachments/assets/3229b1f1-32ee-49e1-b260-44e5ed0c085a" />
 
+## 14)feat/firestore-integration
+This branch integrates Cloud Firestore into the app to persist user data across sessions.
+What was done:
+
+Created UserModel with fromFirestore and toFirestore methods to map user data to and from Firestore.
+Created ScanHistoryModel with fromFirestore and toFirestore methods to represent a single URL scan result.
+Added FirebaseUtils methods to handle all Firestore operations in one place: creating a user document on registration, reading user data, saving scan results, fetching scan history, clearing scan history, and incrementing totalScans and threatsBlocked counters automatically after each scan.
+Connected the URL Scan screen to save every scan result to Firestore under the current user's UID after the API returns a response.
+Connected the History Tab to load real scan history from Firestore instead of hardcoded data, with pull-to-refresh and clear all support.
+Connected the Profile Tab to display real user data fetched from Firestore.
+Connected the Home Tab Tactical Overview to show real totalScans and threatsBlocked values from Firestore.
+
 
 
 
