@@ -3,7 +3,9 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class StatisticsCards extends StatelessWidget {
-  const StatisticsCards({super.key});
+  final int totalScans ;
+  final int threatsBlocked ;
+  const StatisticsCards({super.key,required this.totalScans,required this.threatsBlocked});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class StatisticsCards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text('Total Scans', style: AppStyles.regular12MediumGrey3),
-                Text('124', style: AppStyles.light30White),
+                Text('$totalScans', style: AppStyles.light30White),
                 ],
               
             ),
@@ -43,7 +45,7 @@ class StatisticsCards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text('Threats Blocked', style: AppStyles.regular12MediumGrey3),
-                Text('12', style: AppStyles.light30White),
+                Text('$threatsBlocked', style: AppStyles.light30White),
                 ],
               
             ),

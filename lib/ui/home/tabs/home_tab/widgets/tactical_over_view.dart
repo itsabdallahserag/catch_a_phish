@@ -4,7 +4,9 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class TacticalOverView extends StatelessWidget {
-  const TacticalOverView({super.key});
+  final int totalScans ;
+  final int threatsBlocked ;
+  const TacticalOverView({super.key,required this.totalScans,required this.threatsBlocked});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,9 @@ class TacticalOverView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            Text('12', style: AppStyles.semiBold32White),
+                            Text('$totalScans', style: AppStyles.semiBold32White),
                             SizedBox(height: height * 0.006),
-                            Text('scans today', style: AppStyles.light12White),
+                            Text('SCANS ', style: AppStyles.light12White),
                           ],
                         ),
                       ),
@@ -52,9 +54,9 @@ class TacticalOverView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            Text('12', style: AppStyles.semiBold32PinkColor),
+                            Text('$threatsBlocked', style: AppStyles.semiBold32PinkColor),
                             SizedBox(height: height * 0.006),
-                            Text('scans today', style: AppStyles.light12White),
+                            Text('THREATS DETECTED', style: AppStyles.light12White),
                           ],
                         ),
                       ),

@@ -2,6 +2,8 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/scan_history_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_content_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_scan_result.dart';
@@ -80,7 +82,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
                     child: isLoading
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children:  [
+                            children: [
                               SizedBox(
                                 width: 18,
                                 height: 18,
@@ -139,7 +141,10 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
   void openSafePreview() {
     if (controller.text.trim().isEmpty) return;
     if (!canOpenWebsite) {
-        AppDialogUtils.showMessage(context: context, message: "Blocked: URL marked as unsafe");
+      AppDialogUtils.showMessage(
+        context: context,
+        message: "Blocked: URL marked as unsafe",
+      );
       return;
     }
     Navigator.push(
@@ -166,11 +171,19 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
       if (!mounted) return;
       if (response.detail != null) {
         AppDialogUtils.showMessage(context: context, message: response.detail!);
+
         return;
       }
       canOpenWebsite = isSafeWebsite(response.prediction);
       final screenResponse = await fetchScreenshot(response.screenshotScanId);
       if (!mounted) return;
+      await FirebaseUtils.addScan(
+        ScanHistoryModel(
+          url: controller.text.trim(),
+          result: response.prediction,
+          createdAt: DateTime.now(),
+        ),
+      );
       updateResults(response, screenResponse);
     } catch (e) {
       debugPrint(e.toString());
