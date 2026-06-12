@@ -5,6 +5,8 @@ import 'package:catch_a_phish/firebase_options.dart';
 import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:catch_a_phish/Ui/auth/auth_screen.dart';
 import 'package:catch_a_phish/Ui/home/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseFirestore.instance.enableNetwork();
   runApp(const MyApp());
 }
 
@@ -26,7 +29,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.login,
+      initialRoute:FirebaseAuth.instance.currentUser == null
+          ? AppRoutes.login
+          : AppRoutes.home,
       routes: {
         AppRoutes.login: (context) => const AuthScreen(),
         AppRoutes.home: (context) => const HomeScreen(),
