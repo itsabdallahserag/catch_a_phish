@@ -8,6 +8,7 @@ class SettingsItem extends StatelessWidget {
   final bool isActive;
   final ValueChanged<bool> onChanged;
   final bool? isLanguage ;
+  final void Function()? onPressedLanguage ;
 
   const SettingsItem({
     super.key,
@@ -15,7 +16,8 @@ class SettingsItem extends StatelessWidget {
     required this.description,
     required this.isActive,
     required this.onChanged,
-    this.isLanguage = false 
+    this.isLanguage = false ,
+    this.onPressedLanguage
   });
 
   @override
@@ -51,7 +53,10 @@ class SettingsItem extends StatelessWidget {
             }),
           ),
         ):
-        Icon(Icons.arrow_forward_ios,size: 14, color: AppColors.grey,)
+        IconButton(
+          onPressed: onPressedLanguage,
+          icon:Icon(Icons.arrow_forward_ios,size: 14, color: AppColors.grey) ,
+          )
       ],
     );
   }
