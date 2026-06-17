@@ -1,8 +1,14 @@
 class UserModel {
   UserModel({
-    this.uid ,
+    this.uid,
     this.name,
     this.email,
+    this.realTimeProtection = true,
+    this.deepInspection = false,
+    this.smsFiltering = true,
+    this.notifications = true,
+    this.darkMode = true,
+    this.language = 'en',
     this.totalScans = 0,
     this.threatsBlocked = 0,
   });
@@ -12,8 +18,14 @@ class UserModel {
           uid: json['uid'],
           name: json['name'],
           email: json['email'],
+          realTimeProtection: json['realTimeProtection'] ?? true,
+          deepInspection: json['deepInspection'] ?? false,
+          smsFiltering: json['smsFiltering'] ?? true,
+          notifications: json['notifications'] ?? true,
+          darkMode: json['darkMode'] ?? true,
           totalScans: json['totalScans'] ?? 0,
           threatsBlocked: json['threatsBlocked'] ?? 0,
+          language: json['language'] ?? 'en',
         );
 
   String? uid;
@@ -21,7 +33,13 @@ class UserModel {
   String? email;
   int totalScans;
   int threatsBlocked;
-  static const String collectionName = 'Users' ;
+  bool realTimeProtection;
+  bool deepInspection;
+  bool smsFiltering;
+  bool notifications;
+  bool darkMode;
+  String language;
+  static const String collectionName = 'Users';
 
   Map<String, dynamic> toFirestore() {
     return {
@@ -30,21 +48,40 @@ class UserModel {
       'email': email,
       'totalScans': totalScans,
       'threatsBlocked': threatsBlocked,
+      'realTimeProtection': realTimeProtection,
+      'deepInspection': deepInspection,
+      'smsFiltering': smsFiltering,
+      'notifications': notifications,
+      'darkMode': darkMode,
+      'language': language,
     };
   }
+
   UserModel copyWith({
-  String? uid,
-  String? name,
-  String? email,
-  int? totalScans,
-  int? threatsBlocked,
-}) {
-  return UserModel(
-    uid: uid ?? this.uid,
-    name: name ?? this.name,
-    email: email ?? this.email,
-    totalScans: totalScans ?? this.totalScans,
-    threatsBlocked: threatsBlocked ?? this.threatsBlocked,
-  );
-}
+    String? uid,
+    String? name,
+    String? email,
+    int? totalScans,
+    int? threatsBlocked,
+    bool? realTimeProtection,
+    bool? deepInspection,
+    bool? smsFiltering,
+    bool? notifications,
+    bool? darkMode,
+    String? language
+  }) {
+    return UserModel(
+      uid: uid ?? this.uid,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      totalScans: totalScans ?? this.totalScans,
+      threatsBlocked: threatsBlocked ?? this.threatsBlocked,
+      realTimeProtection: realTimeProtection ?? this.realTimeProtection,
+      deepInspection: deepInspection ?? this.deepInspection,
+      smsFiltering: smsFiltering ?? this.smsFiltering,
+      notifications: notifications ?? this.notifications,
+      darkMode: darkMode ?? this.darkMode,
+      language: language ?? this.language
+    );
+  }
 }

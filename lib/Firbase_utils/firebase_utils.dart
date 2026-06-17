@@ -53,6 +53,7 @@ class FirebaseUtils {
     return await FirebaseAuth.instance.signInWithProvider(githubProvider);
   }
 
+  //                        FireStore
   static CollectionReference<UserModel> getUserCollection() {
     return FirebaseFirestore.instance
         .collection(UserModel.collectionName)
@@ -127,5 +128,21 @@ class FirebaseUtils {
       'totalScans': 0,
       'threatsBlocked': 0,
     });
+  }
+
+  static Future<void> updateSetting({
+    required bool value,
+    required String updated,
+  }) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    await getUserCollection().doc(uid).update({updated: value});
+  }
+
+  static Future<void> updateStringSetting({
+    required String updated,
+    required String value,
+  }) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    await getUserCollection().doc(uid).update({updated: value});
   }
 }

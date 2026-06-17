@@ -1,7 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/Core/utils/notification_service.dart';
+import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/threat_analysis_report.dart';
@@ -22,6 +26,19 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
 
   bool isLoading = false;
   PredictResponce? result;
+  UserModel? user;
+
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    user = await FirebaseUtils.readUser();
+    if (!mounted) return;
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -30,6 +47,14 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
   }
 
   Future<void> checkMessage() async {
+    if (user?.smsFiltering == false) {
+      AppDialogUtils.showMessage(
+        context: context,
+        message: "SMS Filtering is disabled",
+        negActionName: 'ok',
+      );
+      return;
+    }
     if (!formKey.currentState!.validate()) return;
 
     setState(() {
@@ -39,21 +64,31 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
 
     try {
       final response = await ApiManager.spamCheck(controller.text);
-
+      if (user?.notifications == true &&
+          response.label?.toLowerCase() == 'phishing') {
+        await NotificationService.showNotification(
+          title: '⚠️ Phishing Detected',
+          body: 'The Message you scanned is malicious',
+        );
+      }
+      if (!mounted) return;
       setState(() {
         result = response;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         result = null;
       });
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -110,7 +145,9 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
                     ],
                     onTap: isLoading ? null : checkMessage,
                     child: isLoading
-                        ? CircularProgressIndicator(color: AppColors.navyBackground)
+                        ? CircularProgressIndicator(
+                            color: AppColors.navyBackground,
+                          )
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
