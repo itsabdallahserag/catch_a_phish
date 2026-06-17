@@ -54,7 +54,9 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("🛡 Safe Preview")),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("🛡 Safe Preview")),
 
       body: Column(
         children: [
