@@ -2,8 +2,10 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/Core/utils/notification_service.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Firbase_utils/models/scan_history_model.dart';
+import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_content_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/url_scan_result.dart';
@@ -30,10 +32,19 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
   UrlResponce? urlResult;
   ScreenShootResponce? screenResult;
   TextEditingController controller = TextEditingController();
+  UserModel? user;
+
   @override
   void initState() {
     super.initState();
     setupControllerListener();
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    user = await FirebaseUtils.readUser();
+    if (!mounted) return;
+    setState(() {});
   }
 
   @override
@@ -168,13 +179,24 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
     startLoading();
     try {
       final response = await ApiManager.urlCheck(controller.text.trim());
+      if (user?.notifications == true &&
+          response.prediction?.toLowerCase() == 'phishing') {
+        await NotificationService.showNotification(
+          title: '⚠️ Phishing Detected',
+          body: 'The URL you scanned is malicious',
+        );
+      }
+      if (user?.realTimeProtection == true) {
+        canOpenWebsite = isSafeWebsite(response.prediction);
+      } else {
+        canOpenWebsite = true;
+      }
       if (!mounted) return;
       if (response.detail != null) {
         AppDialogUtils.showMessage(context: context, message: response.detail!);
 
         return;
       }
-      canOpenWebsite = isSafeWebsite(response.prediction);
       final screenResponse = await fetchScreenshot(response.screenshotScanId);
       if (!mounted) return;
       await FirebaseUtils.addScan(
