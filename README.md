@@ -243,6 +243,26 @@ Connected the History Tab to load real scan history from Firestore instead of ha
 Connected the Profile Tab to display real user data fetched from Firestore.
 Connected the Home Tab Tactical Overview to show real totalScans and threatsBlocked values from Firestore.
 
+##  15)⚙️ Settings
+
+The **Settings** tab allows users to customize the application's security and user experience.
+
+### 🛡️ Security
+- **Real-Time Protection:** Automatically scans URLs before opening them inside the app and blocks malicious websites.
+- **Deep Inspection:** Enables advanced threat analysis for more accurate phishing detection.
+- **SMS Filtering:** Detects and blocks malicious text messages containing suspicious links.
+
+### 🎨 Preferences
+- **Notifications:** Enables or disables instant security alerts for detected threats.
+- **Dark Mode:** Switches the application between light and dark themes.
+- **Language:** Displays the current application language (ready for future localization support).
+
+### 📚 Resources
+- **Help Center:** Opens an online help page with usage guides and FAQs.
+- **Privacy Policy:** Opens the application's privacy policy in an in-app WebView.
+
+All settings are synchronized with **Firebase Firestore**, ensuring that each user's preferences are securely stored and restored across sessions.
+
 
 
 
