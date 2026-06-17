@@ -141,6 +141,21 @@ class _LoginFormState extends State<LoginForm> {
             );
 
         if (!mounted) return;
+        if (!FirebaseUtils.isEmailVerified()) {
+          await FirebaseUtils.sendEmailVerification();
+          await FirebaseUtils.signOut();
+          if (!mounted) return;
+          AppDialogUtils.hideLoading(context);
+          AppDialogUtils.showMessage(
+            context: context,
+            title: 'Verify Your Email',
+            message:
+                'We sent a verification email. Please check your inbox and verify, then login again.',
+            posActionName: 'OK',
+            posActionCallBack: () => Navigator.pop(context),
+          );
+          return;
+        }
 
         AppDialogUtils.hideLoading(context);
 

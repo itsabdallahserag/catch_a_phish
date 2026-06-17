@@ -27,6 +27,14 @@ class FirebaseUtils {
     );
   }
 
+  static Future<void> sendEmailVerification() async {
+    await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+  }
+
+  static bool isEmailVerified() {
+    return FirebaseAuth.instance.currentUser?.emailVerified ?? false;
+  }
+
   // Google Sign In
   static Future<UserCredential?> loginByGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

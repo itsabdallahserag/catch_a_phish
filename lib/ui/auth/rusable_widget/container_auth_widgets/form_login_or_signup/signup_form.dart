@@ -184,24 +184,20 @@ class _SignUpFormState extends State<SignUpForm> {
             email: userCredential.user!.email,
           ),
         );
+        await FirebaseUtils.sendEmailVerification();
+        await FirebaseUtils.signOut();
 
         if (!mounted) return;
 
         AppDialogUtils.hideLoading(context);
 
         AppDialogUtils.showMessage(
-          dialogBackgroundColor: AppColors.navyBackground,
-          dismissible: false,
-          messageStyle: AppStyles.semiBold12SkyBlue,
-          titleStyle: AppStyles.semiBold16White,
-          posActionStyle: AppStyles.semiBold16White,
           context: context,
-          title: 'Success',
-          message: 'Welcome ${userCredential.user?.email}',
+          title: 'Verify Your Email',
+          message:
+              'We sent a verification email to ${userCredential.user?.email}. Please verify and login.',
           posActionName: 'OK',
-          posActionCallBack: () {
-            Navigator.pushReplacementNamed(context, AppRoutes.home);
-          },
+          posActionCallBack: () => Navigator.pop(context),
         );
       } on FirebaseAuthException catch (e) {
         if (!mounted) return;
