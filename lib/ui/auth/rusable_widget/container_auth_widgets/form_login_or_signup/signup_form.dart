@@ -197,7 +197,9 @@ class _SignUpFormState extends State<SignUpForm> {
           message:
               'We sent a verification email to ${userCredential.user?.email}. Please verify and login.',
           posActionName: 'OK',
-          posActionCallBack: () => Navigator.pop(context),
+          posActionCallBack: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.login);
+          },
         );
       } on FirebaseAuthException catch (e) {
         if (!mounted) return;

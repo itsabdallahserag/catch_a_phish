@@ -5,6 +5,7 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
+import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/authentication_screen.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/profile_image.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/security_item.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/statistics_cards.dart';
@@ -65,7 +66,10 @@ class _ProfileTabState extends State<ProfileTab> {
             SizedBox(height: height * 0.01),
             Text(user!.email!, style: AppStyles.semiBold16MediumGrey2),
             SizedBox(height: height * 0.02),
-            StatisticsCards(threatsBlocked: user!.threatsBlocked,totalScans: user!.totalScans,),
+            StatisticsCards(
+              threatsBlocked: user!.threatsBlocked,
+              totalScans: user!.totalScans,
+            ),
             SizedBox(height: height * 0.02),
             Row(
               children: [
@@ -84,6 +88,10 @@ class _ProfileTabState extends State<ProfileTab> {
               icon: Icons.lock,
               titleText: 'Authentication',
               bodyText: 'Two-factor enabled',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => AuthenticationScreen()),
+              ),
             ),
             SizedBox(height: height * 0.02),
             SecurityItem(

@@ -6,11 +6,13 @@ class SecurityItem extends StatelessWidget {
   final IconData icon;
   final String titleText;
   final String bodyText;
+  final void Function()? onTap;
   const SecurityItem({
     super.key,
     required this.icon,
     required this.titleText,
     required this.bodyText,
+    this.onTap,
   });
 
   @override
@@ -45,7 +47,7 @@ class SecurityItem extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: onTap,
             icon: Icon(
               Icons.arrow_forward_ios_rounded,
               color: AppColors.mediumGrey,
