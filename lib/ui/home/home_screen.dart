@@ -5,6 +5,7 @@ import 'package:catch_a_phish/Ui/home/tabs/history_tab/history_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/home_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/profile_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/settings_tab/settings_tab.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,14 +51,25 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
             items: [
-              buildBottomNavigationBarItem(0, AppImages.iconHome, 'Home'),
-              buildBottomNavigationBarItem(1, AppImages.iconHistory, 'History'),
-              buildBottomNavigationBarItem(2, AppImages.iconProfile, 'Profile'),
+              buildBottomNavigationBarItem(
+                0,
+                AppImages.iconHome,
+                AppLocalizations.of(context)!.home,
+              ),
+              buildBottomNavigationBarItem(
+                1,
+                AppImages.iconHistory,
+                AppLocalizations.of(context)!.history,
+              ),
+              buildBottomNavigationBarItem(
+                2,
+                AppImages.iconProfile,
+                AppLocalizations.of(context)!.profile,
+              ),
               buildBottomNavigationBarItem(
                 3,
-
                 AppImages.iconSettings,
-                'Settings',
+                AppLocalizations.of(context)!.settings,
               ),
             ],
           ),
