@@ -7,6 +7,7 @@ import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_social_widget.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -29,16 +30,16 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Enter your email', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.enterYourEmail, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
-                  return 'Email is required';
+                  return AppLocalizations.of(context)!.emailRequired;
                 }
                 final emailRegex = RegExp(r'^[\w.-]+@[\w.-]+\.\w{2,}$');
                 if (!emailRegex.hasMatch(text)) {
-                  return 'Enter a valid email';
+                  return AppLocalizations.of(context)!.enterValidEmail;
                 }
                 return null;
               },
@@ -53,27 +54,27 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             SizedBox(height: 16),
-            Text('Enter your password', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.enterYourPassword, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
-                  return 'Password is required';
+                  return AppLocalizations.of(context)!.passwordRequired;
                 }
                 if (text.length < 8) {
-                  return 'Password must be at least 8 characters';
+                  return AppLocalizations.of(context)!.passwordMinLength;
                 }
                 if (!text.contains(RegExp(r'[A-Z]'))) {
-                  return 'Password must contain at least one uppercase letter';
+                  return AppLocalizations.of(context)!.passwordUppercase;
                 }
                 if (!text.contains(RegExp(r'[0-9]'))) {
-                  return 'Password must contain at least one number';
+                  return AppLocalizations.of(context)!.passwordNumber;
                 }
                 return null;
               },
 
               controller: passwordController,
-              hintText: 'Password',
+              hintText: AppLocalizations.of(context)!.password,
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
@@ -87,7 +88,7 @@ class _LoginFormState extends State<LoginForm> {
             Row(
               children: [
                 Checkbox(value: false, onChanged: (value) {}),
-                Text('Remember me', style: AppStyles.regular12White),
+                Text(AppLocalizations.of(context)!.rememberMe, style: AppStyles.regular12White),
                 Spacer(),
                 Text('Forgot password?', style: AppStyles.medium12Blue),
               ],
@@ -99,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'ACCESS SECURE TERMINAL',
+                    AppLocalizations.of(context)!.accessSecureTerminal,
                     style: AppStyles.medium16Black,
                   ),
                   Icon(Icons.arrow_forward, color: AppColors.black),
@@ -111,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             SizedBox(height: 36),
             Text(
-              'OR CONTINUE WITH',
+              AppLocalizations.of(context)!.orContinueWith,
               style: AppStyles.bold15Grey,
               textAlign: TextAlign.center,
             ),
@@ -148,10 +149,10 @@ class _LoginFormState extends State<LoginForm> {
           AppDialogUtils.hideLoading(context);
           AppDialogUtils.showMessage(
             context: context,
-            title: 'Verify Your Email',
+            title: AppLocalizations.of(context)!.verifyYourEmail,
             message:
-                'We sent a verification email. Please check your inbox and verify, then login again.',
-            posActionName: 'OK',
+                AppLocalizations.of(context)!.verificationEmailSent,
+            posActionName: AppLocalizations.of(context)!.ok,
             posActionCallBack: () => Navigator.pop(context),
           );
           return;
@@ -166,9 +167,9 @@ class _LoginFormState extends State<LoginForm> {
           titleStyle: AppStyles.semiBold16White,
           posActionStyle: AppStyles.semiBold16White,
           context: context,
-          title: 'Success',
-          message: 'Welcome ${userCredential.user?.email}',
-          posActionName: 'OK',
+          title: AppLocalizations.of(context)!.success,
+          message: '${AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
+          posActionName: AppLocalizations.of(context)!.ok,
           posActionCallBack: () {
             Navigator.pushReplacementNamed(context, AppRoutes.home);
           },
@@ -180,14 +181,14 @@ class _LoginFormState extends State<LoginForm> {
 
         AppDialogUtils.showMessage(
           context: context,
-          title: 'Login Failed',
-          message: e.message ?? 'Unknown Error',
+          title: AppLocalizations.of(context)!.loginFailed,
+          message: e.message ?? AppLocalizations.of(context)!.unknownError,
           dialogBackgroundColor: AppColors.navyBackground,
           dismissible: false,
           messageStyle: AppStyles.semiBold12SkyBlue,
           titleStyle: AppStyles.semiBold16White,
           posActionStyle: AppStyles.semiBold16White,
-          posActionName: 'OK',
+          posActionName: AppLocalizations.of(context)!.ok,
         );
       }
     }

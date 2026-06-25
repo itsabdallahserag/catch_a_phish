@@ -30,14 +30,20 @@
 
 "verifyYourEmail": "تحقق من بريدك الإلكتروني",
 "verificationEmailSent": "لقد أرسلنا رسالة تحقق إلى بريدك الإلكتروني. يرجى التحقق منه ثم تسجيل الدخول.",
-"verificationEmailSentToUser": "لقد أرسلنا رسالة تحقق إلى {email}. يرجى التحقق منها ثم تسجيل الدخول.",
+"verificationEmailSentToUser": "لقد أرسلنا رسالة تحقق . يرجى التحقق منها ثم تسجيل الدخول.",
 
 "success": "نجاح",
 "ok": "حسناً",
 
-"welcomeUser": "مرحباً {email}",
+"welcomeUser": "مرحباً",
 
 "loginFailed": "فشل تسجيل الدخول",
 "signUpFailed": "فشل إنشاء الحساب",
-"unknownError": "خطأ غير معروف"
+"unknownError": "خطأ غير معروف",
+"cancelled": "تم الإلغاء",
+  "googleSignInCancelled": "تم إلغاء تسجيل الدخول بواسطة Google",
+   "home": "الرئيسية",
+  "history": "السجل",
+  "profile": "الملف الشخصي",
+  "settings": "الإعدادات"
 }

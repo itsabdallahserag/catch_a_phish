@@ -30,14 +30,20 @@
 
 "verifyYourEmail": "Verify Your Email",
 "verificationEmailSent": "We sent a verification email. Please check your inbox and verify, then login again.",
-"verificationEmailSentToUser": "We sent a verification email to {email}. Please verify and login.",
+"verificationEmailSentToUser": "We sent a verification email. Please verify and login.",
 
 "success": "Success",
 "ok": "OK",
 
-"welcomeUser": "Welcome {email}",
+"welcomeUser": "Welcome",
 
 "loginFailed": "Login Failed",
 "signUpFailed": "Sign Up Failed",
-"unknownError": "Unknown Error"
+"unknownError": "Unknown Error",
+"cancelled": "Cancelled",
+  "googleSignInCancelled": "Google sign in was cancelled",
+  "home": "Home",
+  "history": "History",
+  "profile": "Profile",
+  "settings": "Settings"
 }

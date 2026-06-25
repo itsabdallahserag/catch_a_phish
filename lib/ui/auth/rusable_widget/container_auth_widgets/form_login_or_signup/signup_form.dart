@@ -8,6 +8,7 @@ import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_social_widget.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -33,17 +34,17 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Enter your Name', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.enterYourName, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
-                  return 'Name is required';
+                  return AppLocalizations.of(context)!.nameRequired;
                 }
                 return null;
               },
               controller: nameController,
-              hintText: 'Name',
+              hintText: AppLocalizations.of(context)!.name,
               keyboardType: TextInputType.name,
               prefixIcon: Icon(
                 Icons.person,
@@ -52,16 +53,16 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             SizedBox(height: 16),
-            Text('Enter your email', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.enterYourEmail, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
-                  return 'Email is required';
+                  return AppLocalizations.of(context)!.emailRequired;
                 }
                 final emailRegex = RegExp(r'^[\w.-]+@[\w.-]+\.\w{2,}$');
                 if (!emailRegex.hasMatch(text)) {
-                  return 'Enter a valid email';
+                  return AppLocalizations.of(context)!.enterValidEmail;
                 }
                 return null;
               },
@@ -76,27 +77,27 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             SizedBox(height: 16),
-            Text('Enter your password', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.enterYourPassword, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
-                  return 'Password is required';
+                  return AppLocalizations.of(context)!.passwordRequired;
                 }
                 if (text.length < 8) {
-                  return 'Password must be at least 8 characters';
+                  return AppLocalizations.of(context)!.passwordMinLength;
                 }
                 if (!text.contains(RegExp(r'[A-Z]'))) {
-                  return 'Password must contain at least one uppercase letter';
+                  return AppLocalizations.of(context)!.passwordUppercase;
                 }
                 if (!text.contains(RegExp(r'[0-9]'))) {
-                  return 'Password must contain at least one number';
+                  return AppLocalizations.of(context)!.passwordNumber;
                 }
                 return null;
               },
 
               controller: passwordController,
-              hintText: 'Password',
+              hintText: AppLocalizations.of(context)!.password,
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
@@ -107,17 +108,17 @@ class _SignUpFormState extends State<SignUpForm> {
               obscureText: true,
             ),
             SizedBox(height: 16),
-            Text('Confirm your password', style: AppStyles.regular12White),
+            Text(AppLocalizations.of(context)!.confirmYourPassword, style: AppStyles.regular12White),
             SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text != passwordController.text) {
-                  return 'Passwords do not match';
+                  return AppLocalizations.of(context)!.passwordsDoNotMatch;
                 }
                 return null;
               },
               controller: confirmPasswordController,
-              hintText: 'Confirm Password',
+              hintText: AppLocalizations.of(context)!.confirmPassword,
               keyboardType: TextInputType.visiblePassword,
               prefixIcon: Image.asset(
                 AppImages.iconPassword,
@@ -134,7 +135,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'ACCESS SECURE TERMINAL',
+                    AppLocalizations.of(context)!.accessSecureTerminal,
                     style: AppStyles.medium16Black,
                   ),
                   Icon(Icons.arrow_forward, color: AppColors.black),
@@ -146,7 +147,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             SizedBox(height: 36),
             Text(
-              'OR CONTINUE WITH',
+              AppLocalizations.of(context)!.orContinueWith,
               style: AppStyles.bold15Grey,
               textAlign: TextAlign.center,
             ),
@@ -193,10 +194,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
         AppDialogUtils.showMessage(
           context: context,
-          title: 'Verify Your Email',
+          title: AppLocalizations.of(context)!.verifyYourEmail,
           message:
-              'We sent a verification email to ${userCredential.user?.email}. Please verify and login.',
-          posActionName: 'OK',
+              AppLocalizations.of(context)!.verificationEmailSent,
+          posActionName:AppLocalizations.of(context)!.ok,
           posActionCallBack: () {
             Navigator.pushReplacementNamed(context, AppRoutes.login);
           },
@@ -208,14 +209,14 @@ class _SignUpFormState extends State<SignUpForm> {
 
         AppDialogUtils.showMessage(
           context: context,
-          title: 'Sign Up Failed',
-          message: e.message ?? 'Unknown Error',
+          title: AppLocalizations.of(context)!.signUpFailed,
+          message: e.message ?? AppLocalizations.of(context)!.unknownError,
           dialogBackgroundColor: AppColors.navyBackground,
           dismissible: false,
           messageStyle: AppStyles.semiBold12SkyBlue,
           titleStyle: AppStyles.semiBold16White,
           posActionStyle: AppStyles.semiBold16White,
-          posActionName: 'OK',
+          posActionName:AppLocalizations.of(context)!.ok,
         );
       }
     }
