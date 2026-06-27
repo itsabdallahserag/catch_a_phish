@@ -263,6 +263,24 @@ The **Settings** tab allows users to customize the application's security and us
 
 All settings are synchronized with **Firebase Firestore**, ensuring that each user's preferences are securely stored and restored across sessions.
 
+## 16) 🚀 Latest Updates
+
+### 🔐 Two-Factor Authentication (2FA)
+- Added Two-Factor Authentication for enhanced account security.
+- Users are required to verify their identity before completing the login process.
+- Improved authentication flow and user protection.
+
+### 🌍 Localization Improvements
+- Updated localization files for both English and Arabic.
+- Added new translation keys across the application.
+- Replaced hardcoded strings with localized resources using `AppLocalizations`.
+- Improved multilingual support and consistency throughout the app.
+
+### ✨ General Improvements
+- Refactored UI text to use localization.
+- Improved maintainability and scalability of the application.
+- Enhanced user experience with better language support.
+
 
 
 
