@@ -16,6 +16,7 @@ import 'package:catch_a_phish/api/models/url/ScreenShootResponce.dart';
 import 'package:catch_a_phish/api/models/url/UrlResponce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 
 class UrlScanScreen extends StatefulWidget {
   const UrlScanScreen({super.key});
@@ -71,7 +72,10 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
           backgroundColor: AppColors.glassGrey,
           elevation: 0,
           centerTitle: true,
-          title: Text('URL Scan', style: AppStyles.light24White),
+          title: Text(
+            AppLocalizations.of(context)!.urlScan,
+            style: AppStyles.light24White,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -104,7 +108,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
                               ),
                               SizedBox(width: 10),
                               Text(
-                                "Scanning...",
+                                AppLocalizations.of(context)!.scanning,
                                 style: AppStyles.medium16Black,
                               ),
                             ],
@@ -126,8 +130,8 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
                           AppColors.midnightBlue,
                         ],
                         onTap: openSafePreview,
-                        child: const Text(
-                          "Open Safe Preview",
+                        child: Text(
+                          AppLocalizations.of(context)!.openSafePreview,
                           style: AppStyles.medium16Black,
                         ),
                       ),
@@ -154,7 +158,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
     if (!canOpenWebsite) {
       AppDialogUtils.showMessage(
         context: context,
-        message: "Blocked: URL marked as unsafe",
+        message: AppLocalizations.of(context)!.blockedUnsafeUrl,
       );
       return;
     }
@@ -179,11 +183,12 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
     startLoading();
     try {
       final response = await ApiManager.urlCheck(controller.text.trim());
+      if(!mounted) return ;
       if (user?.notifications == true &&
           response.prediction?.toLowerCase() == 'phishing') {
         await NotificationService.showNotification(
-          title: '⚠️ Phishing Detected',
-          body: 'The URL you scanned is malicious',
+          title: AppLocalizations.of(context)!.phishingDetected,
+          body: AppLocalizations.of(context)!.maliciousUrlNotification,
         );
       }
       if (user?.realTimeProtection == true) {
@@ -213,7 +218,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
       resetResults();
       AppDialogUtils.showMessage(
         context: context,
-        message: "Failed to scan URL",
+       message: AppLocalizations.of(context)!.failedToScanUrl,
       );
     } finally {
       stopLoading();

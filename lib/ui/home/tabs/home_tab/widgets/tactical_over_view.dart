@@ -1,12 +1,17 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class TacticalOverView extends StatelessWidget {
-  final int totalScans ;
-  final int threatsBlocked ;
-  const TacticalOverView({super.key,required this.totalScans,required this.threatsBlocked});
+  final int totalScans;
+  final int threatsBlocked;
+  const TacticalOverView({
+    super.key,
+    required this.totalScans,
+    required this.threatsBlocked,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,10 @@ class TacticalOverView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('tactical overview', style: AppStyles.semiBold16White),
+                  Text(
+                    AppLocalizations.of(context)!.tacticalOverview,
+                    style: AppStyles.semiBold16White,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -37,26 +45,38 @@ class TacticalOverView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            Text('$totalScans', style: AppStyles.semiBold32White),
+                            Text(
+                              '$totalScans',
+                              style: AppStyles.semiBold32White,
+                            ),
                             SizedBox(height: height * 0.006),
-                            Text('SCANS ', style: AppStyles.light12White),
+                            Text(
+                              AppLocalizations.of(context)!.scans,
+                              style: AppStyles.light12White,
+                            ),
                           ],
                         ),
                       ),
                       Container(
-                        height: height*0.08,
+                        height: height * 0.08,
                         width: 1,
                         color: AppColors.whiteOverlay18,
                       ),
-                      SizedBox(width: width*0.04,),
+                      SizedBox(width: width * 0.04),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            Text('$threatsBlocked', style: AppStyles.semiBold32PinkColor),
+                            Text(
+                              '$threatsBlocked',
+                              style: AppStyles.semiBold32PinkColor,
+                            ),
                             SizedBox(height: height * 0.006),
-                            Text('THREATS DETECTED', style: AppStyles.light12White),
+                            Text(
+                              AppLocalizations.of(context)!.threatsDetected,
+                              style: AppStyles.light12White,
+                            ),
                           ],
                         ),
                       ),

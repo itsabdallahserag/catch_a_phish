@@ -6,6 +6,7 @@ import 'package:catch_a_phish/Firbase_utils/models/scan_history_model.dart';
 import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/home/tabs/history_tab/widgets/item_history.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/tactical_over_view.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class HistoryTab extends StatefulWidget {
@@ -42,17 +43,7 @@ class _HistoryTabState extends State<HistoryTab> {
     setState(() {});
   }
 
-  String timeAgo(DateTime date) {
-    final diff = DateTime.now().difference(date);
 
-    if (diff.inMinutes < 60) {
-      return "${diff.inMinutes} min ago";
-    } else if (diff.inHours < 24) {
-      return "${diff.inHours} hour ago";
-    } else {
-      return "${diff.inDays} day ago";
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +56,10 @@ class _HistoryTabState extends State<HistoryTab> {
         elevation: 0,
         title: Row(
           children: [
-            Text('Scan History', style: AppStyles.light24White),
+            Text(
+              AppLocalizations.of(context)!.scanHistory,
+              style: AppStyles.light24White,
+            ),
             const Spacer(),
             const Icon(Icons.search, color: AppColors.mediumGrey, size: 24),
           ],
@@ -95,7 +89,7 @@ class _HistoryTabState extends State<HistoryTab> {
                       child: Row(
                         children: [
                           Text(
-                            'Recent Activity',
+                            AppLocalizations.of(context)!.recentActivity,
                             style: AppStyles.semiBold18White,
                           ),
                           const Spacer(),
@@ -103,21 +97,29 @@ class _HistoryTabState extends State<HistoryTab> {
                             onPressed: () {
                               AppDialogUtils.showMessage(
                                 context: context,
-                                message: 'Are you sure to Clear all Scans',
+                                message: AppLocalizations.of(
+                                  context,
+                                )!.clearAllScansConfirmation,
                                 negActionCallBack: () {
                                   Navigator.pop(context);
                                 },
-                                negActionName: 'cancel',
+                                negActionName: AppLocalizations.of(
+                                  context,
+                                )!.cancel,
                                 posActionCallBack: () async {
                                   await FirebaseUtils.cleanScansOnce();
                                   await loadScans();
                                 },
-                                posActionName: 'Clear',
-                                title: 'Clear History',
+                                posActionName: AppLocalizations.of(
+                                  context,
+                                )!.clear,
+                                title: AppLocalizations.of(
+                                  context,
+                                )!.clearHistory,
                               );
                             },
                             child: Text(
-                              'clear',
+                              AppLocalizations.of(context)!.clear,
                               style: AppStyles.semiBold12Primary,
                             ),
                           ),
@@ -132,7 +134,11 @@ class _HistoryTabState extends State<HistoryTab> {
                     else
                       Expanded(
                         child: scans.isEmpty
-                            ? Center(child: Text("No history yet"))
+                            ? Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.noHistoryYet,
+                                ),
+                              )
                             : RefreshIndicator(
                                 onRefresh: loadScans,
                                 child: ListView.separated(

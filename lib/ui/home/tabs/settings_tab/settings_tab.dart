@@ -7,6 +7,7 @@ import 'package:catch_a_phish/Ui/home/tabs/settings_tab/widgets/settings_resourc
 import 'package:catch_a_phish/Ui/home/tabs/settings_tab/widgets/settings_secutity_card.dart';
 import 'package:catch_a_phish/providers/app_locale_provider.dart';
 import 'package:catch_a_phish/providers/app_theme_provider.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class _SettingsTabState extends State<SettingsTab> {
   UserModel? user;
   late AppThemeProvider appThemeProvider;
   late AppLocaleProvider appLocaleProvider;
+
   @override
   void initState() {
     super.initState();
@@ -36,18 +38,22 @@ class _SettingsTabState extends State<SettingsTab> {
 
   Future<void> getUser() async {
     user = await FirebaseUtils.readUser();
+
     if (!mounted) return;
+
     appThemeProvider.changeTheme(
       user?.darkMode == true ? ThemeMode.dark : ThemeMode.light,
     );
+
     appLocaleProvider.changeLanguage(user?.language == 'en' ? 'en' : 'ar');
+
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height * 0.08,
@@ -55,9 +61,12 @@ class _SettingsTabState extends State<SettingsTab> {
         elevation: 0,
         title: Row(
           children: [
-            Text('Settings', style: AppStyles.light24White),
-            Spacer(),
-            Icon(Icons.search, color: AppColors.mediumGrey, size: 24),
+            Text(
+              AppLocalizations.of(context)!.settings,
+              style: AppStyles.light24White,
+            ),
+            const Spacer(),
+            const Icon(Icons.search, color: AppColors.mediumGrey, size: 24),
           ],
         ),
       ),
@@ -76,6 +85,7 @@ class _SettingsTabState extends State<SettingsTab> {
                     updated: 'realTimeProtection',
                     value: value,
                   );
+
                   setState(() {
                     user = user?.copyWith(realTimeProtection: value);
                   });
@@ -85,6 +95,7 @@ class _SettingsTabState extends State<SettingsTab> {
                     updated: 'deepInspection',
                     value: value,
                   );
+
                   setState(() {
                     user = user?.copyWith(deepInspection: value);
                   });
@@ -94,12 +105,15 @@ class _SettingsTabState extends State<SettingsTab> {
                     updated: 'smsFiltering',
                     value: value,
                   );
+
                   setState(() {
                     user = user?.copyWith(smsFiltering: value);
                   });
                 },
               ),
+
               SizedBox(height: height * 0.03),
+
               SettingsPreferencesCard(
                 notifications: user?.notifications,
                 darkMode: user?.darkMode,
@@ -114,21 +128,24 @@ class _SettingsTabState extends State<SettingsTab> {
                     user = user?.copyWith(notifications: value);
                   });
                 },
-
                 onDarkModeChanged: (value) async {
                   await FirebaseUtils.updateSetting(
                     updated: 'darkMode',
                     value: value,
                   );
+
                   appThemeProvider.changeTheme(
                     value ? ThemeMode.dark : ThemeMode.light,
                   );
+
                   setState(() {
                     user = user?.copyWith(darkMode: value);
                   });
                 },
               ),
+
               SizedBox(height: height * 0.03),
+
               SettingsResourcesCard(),
             ],
           ),
@@ -141,31 +158,37 @@ class _SettingsTabState extends State<SettingsTab> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Language'),
+        title: Text(AppLocalizations.of(context)!.language),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: Text('English'),
+              title: Text(AppLocalizations.of(context)!.english),
               onTap: () {
                 appLocaleProvider.changeLanguage('en');
+
                 FirebaseUtils.updateStringSetting(
                   updated: 'language',
                   value: 'en',
                 );
+
                 setState(() => user = user?.copyWith(language: 'en'));
+
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('العربية'),
+              title: Text(AppLocalizations.of(context)!.arabic),
               onTap: () {
                 appLocaleProvider.changeLanguage('ar');
+
                 FirebaseUtils.updateStringSetting(
-                 updated: 'language',
+                  updated: 'language',
                   value: 'ar',
                 );
+
                 setState(() => user = user?.copyWith(language: 'ar'));
+
                 Navigator.pop(context);
               },
             ),

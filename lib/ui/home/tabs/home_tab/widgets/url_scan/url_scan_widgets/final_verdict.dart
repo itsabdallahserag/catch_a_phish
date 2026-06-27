@@ -1,6 +1,7 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class FinalVerdict extends StatelessWidget {
@@ -17,6 +18,7 @@ class FinalVerdict extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
@@ -34,14 +36,17 @@ class FinalVerdict extends StatelessWidget {
             children: [
               Image.asset(AppImages.iconTrue, height: 20, width: 20),
               SizedBox(width: width * 0.02),
-              Text('FINAL VERDICT', style: AppStyles.semiBold16MediumGrey2),
+              Text(
+                AppLocalizations.of(context)!.finalVerdict,
+                style: AppStyles.semiBold16MediumGrey2,
+              ),
             ],
           ),
           SizedBox(height: height * 0.02),
           Text(
             prediction != "phishing"
-                ? 'URL APPEARS SAFE'
-                : 'URL APPEARS UNSAFE',
+                ? AppLocalizations.of(context)!.urlAppearsSafe
+                : AppLocalizations.of(context)!.urlAppearsUnsafe,
             style: AppStyles.bold20CayanBlue,
           ),
           SizedBox(height: height * 0.02),
@@ -49,34 +54,7 @@ class FinalVerdict extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: prediction != "phishing"
-                        ? AppColors.purple15
-                        : AppColors.darkRed
-                        ,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.security_sharp,
-                        color: AppColors.lightGrey2,
-                        size: 22,
-                      ),
-                      Text(
-                        "Prediction : $prediction",
-                        style: AppStyles.semiBold12LightGrey2,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: width * 0.01),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: prediction != "phishing"
@@ -86,13 +64,39 @@ class FinalVerdict extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(
+                      const Icon(
+                        Icons.security_sharp,
+                        color: AppColors.lightGrey2,
+                        size: 22,
+                      ),
+                      Text(
+                        "${AppLocalizations.of(context)!.prediction} : $prediction",
+                        style: AppStyles.semiBold12LightGrey2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: width * 0.01),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: prediction != "phishing"
+                        ? AppColors.purple15
+                        : AppColors.darkRed,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(
                         Icons.fireplace_outlined,
                         color: AppColors.lightGrey2,
                         size: 22,
                       ),
                       Text(
-                        "RISK LEVEL : $risklevel",
+                        "${AppLocalizations.of(context)!.riskLevel} : $risklevel",
                         style: AppStyles.semiBold12LightGrey2,
                       ),
                     ],

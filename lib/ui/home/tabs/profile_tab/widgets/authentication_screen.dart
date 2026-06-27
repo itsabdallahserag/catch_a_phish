@@ -3,6 +3,7 @@ import 'package:catch_a_phish/Core/utils/app_dialog_utils.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationScreen extends StatefulWidget {
@@ -22,7 +23,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.glassGrey,
-        title: Text('Authentication', style: AppStyles.light24White),
+        title: Text(
+          AppLocalizations.of(context)!.authentication,
+          style: AppStyles.light24White,
+        ),
       ),
       backgroundColor: AppColors.transparent,
       body: Center(
@@ -36,7 +40,9 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             ),
             SizedBox(height: 20),
             Text(
-              isVerified ? 'Email Verified ✅' : 'Email Not Verified ❌',
+              isVerified
+                  ? AppLocalizations.of(context)!.emailVerified
+                  : AppLocalizations.of(context)!.emailNotVerified,
               style: AppStyles.semiBold18White,
             ),
             SizedBox(height: 20),
@@ -51,15 +57,17 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     if (context.mounted) {
                       AppDialogUtils.showMessage(
                         context: context,
-                        title: 'Email Sent',
-                        message: 'Check your inbox and verify your email.',
-                        posActionName: 'OK',
+                        title: AppLocalizations.of(context)!.emailSent,
+                        message: AppLocalizations.of(
+                          context,
+                        )!.checkInboxVerifyEmail,
+                        posActionName: AppLocalizations.of(context)!.ok,
                         posActionCallBack: () => Navigator.pop(context),
                       );
                     }
                   },
                   child: Text(
-                    'Resend Verification Email',
+                    AppLocalizations.of(context)!.resendVerificationEmail,
                     style: AppStyles.medium16Black,
                   ),
                 ),

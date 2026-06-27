@@ -11,6 +11,7 @@ import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/threat_analysis_report.dart';
 import 'package:catch_a_phish/api/api_manager.dart';
 import 'package:catch_a_phish/api/models/message/PredictResponce.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MessageScanScreen extends StatefulWidget {
@@ -50,11 +51,12 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
     if (user?.smsFiltering == false) {
       AppDialogUtils.showMessage(
         context: context,
-        message: "SMS Filtering is disabled",
-        negActionName: 'ok',
+        message: AppLocalizations.of(context)!.smsFilteringDisabled,
+        negActionName: AppLocalizations.of(context)!.ok,
       );
       return;
     }
+
     if (!formKey.currentState!.validate()) return;
 
     setState(() {
@@ -64,19 +66,23 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
 
     try {
       final response = await ApiManager.spamCheck(controller.text);
+      if (!mounted) return;
       if (user?.notifications == true &&
           response.label?.toLowerCase() == 'phishing') {
         await NotificationService.showNotification(
-          title: '⚠️ Phishing Detected',
-          body: 'The Message you scanned is malicious',
+          title: AppLocalizations.of(context)!.phishingDetected,
+          body: AppLocalizations.of(context)!.maliciousMessageNotification,
         );
       }
+
       if (!mounted) return;
+
       setState(() {
         result = response;
       });
     } catch (e) {
       if (!mounted) return;
+
       setState(() {
         result = null;
       });
@@ -109,7 +115,10 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
           backgroundColor: AppColors.glassGrey,
           elevation: 0,
           centerTitle: true,
-          title: Text('Message Scan', style: AppStyles.light24White),
+          title: Text(
+            AppLocalizations.of(context)!.messageScan,
+            style: AppStyles.light24White,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -119,25 +128,29 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
               child: Column(
                 children: [
                   Container(
-                    decoration: BoxDecoration(color: AppColors.blackOverlay40),
+                    decoration: const BoxDecoration(
+                      color: AppColors.blackOverlay40,
+                    ),
                     child: CustomTextField(
                       controller: controller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a message to scan';
+                          return AppLocalizations.of(
+                            context,
+                          )!.pleaseEnterMessage;
                         }
                         return null;
                       },
                       cursorColor: AppColors.white,
                       hintStyle: AppStyles.regular16White,
                       style: AppStyles.regular16White,
-                      hintText: 'Enter message to scan',
+                      hintText: AppLocalizations.of(
+                        context,
+                      )!.enterMessageToScan,
                       maxLines: 8,
                     ),
                   ),
-
                   SizedBox(height: height * 0.02),
-
                   AuthActionButton(
                     gradientColors: [
                       AppColors.neonBlue,
@@ -145,7 +158,7 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
                     ],
                     onTap: isLoading ? null : checkMessage,
                     child: isLoading
-                        ? CircularProgressIndicator(
+                        ? const CircularProgressIndicator(
                             color: AppColors.navyBackground,
                           )
                         : Row(
@@ -158,22 +171,20 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
                               ),
                               SizedBox(width: width * 0.02),
                               Text(
-                                'Analyze Message',
+                                AppLocalizations.of(context)!.analyzeMessage,
                                 style: AppStyles.medium16Black,
                               ),
                             ],
                           ),
                   ),
-
                   SizedBox(height: height * 0.02),
-
                   result != null
                       ? FadeInUp(
                           from: 50,
-                          duration: Duration(milliseconds: 700),
+                          duration: const Duration(milliseconds: 700),
                           child: ThreatAnalysisReport(result: result!),
                         )
-                      : Text("No result yet"),
+                      : Text(AppLocalizations.of(context)!.noResultYet),
                 ],
               ),
             ),

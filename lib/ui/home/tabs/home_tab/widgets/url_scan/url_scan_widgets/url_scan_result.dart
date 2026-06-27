@@ -10,11 +10,13 @@ import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_wi
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/url_scan_widgets/screen_image.dart';
 import 'package:catch_a_phish/api/models/url/ScreenShootResponce.dart';
 import 'package:catch_a_phish/api/models/url/UrlResponce.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class UrlScanResult extends StatelessWidget {
   final UrlResponce? urlResult;
   final ScreenShootResponce? screenResult;
+
   const UrlScanResult({
     super.key,
     required this.urlResult,
@@ -25,9 +27,10 @@ class UrlScanResult extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     return FadeInDown(
       from: 50,
-      duration: Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 700),
       child: Column(
         children: [
           SizedBox(height: height * 0.02),
@@ -36,7 +39,7 @@ class UrlScanResult extends StatelessWidget {
             risklevel: urlResult!.riskLevel!,
           ),
           SizedBox(height: height * 0.02),
-          AiAnalysis(explanationList: urlResult!.explanations ??[]),
+          AiAnalysis(explanationList: urlResult!.explanations ?? []),
           SizedBox(height: height * 0.02),
           LinearProbability(
             iconName: AppImages.iconRisk,
@@ -54,7 +57,7 @@ class UrlScanResult extends StatelessWidget {
           ),
           SizedBox(height: height * 0.02),
           Text(
-            'Screenshot of the URL\'s landing page',
+            AppLocalizations.of(context)!.urlScreenshot,
             style: AppStyles.regular12MediumGrey3,
             textAlign: TextAlign.start,
           ),
@@ -63,20 +66,23 @@ class UrlScanResult extends StatelessWidget {
           SizedBox(height: height * 0.02),
           AuthActionButton(
             borderColor: AppColors.red,
-            gradientColors: [AppColors.darkRed50, AppColors.darkRed50],
+            gradientColors: const [AppColors.darkRed50, AppColors.darkRed50],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(AppImages.iconReport, height: 24, width: 24),
                 SizedBox(width: width * 0.02),
-                Text('REPORT THIS URL', style: AppStyles.medium14Red),
+                Text(
+                  AppLocalizations.of(context)!.reportThisUrl,
+                  style: AppStyles.medium14Red,
+                ),
               ],
             ),
             onTap: () {},
           ),
           SizedBox(height: height * 0.02),
           Text(
-            'Analysis based on real-time heuristics and crowdsourced intelligence. Always verify the sender of the link.',
+            AppLocalizations.of(context)!.urlAnalysisDisclaimer,
             style: AppStyles.regular12MediumGrey3,
             textAlign: TextAlign.center,
           ),

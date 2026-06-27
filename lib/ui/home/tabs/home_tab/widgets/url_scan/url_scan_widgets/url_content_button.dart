@@ -1,6 +1,7 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class UrlContentButton extends StatelessWidget {
@@ -8,8 +9,8 @@ class UrlContentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -20,7 +21,10 @@ class UrlContentButton extends StatelessWidget {
           width: 20,
         ),
         SizedBox(width: width * 0.02),
-        Text('Scan URL', style: AppStyles.medium16Black),
+        Text(
+          AppLocalizations.of(context)!.scanUrl,
+          style: AppStyles.medium16Black,
+        ),
       ],
     );
   }
