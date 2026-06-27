@@ -98,24 +98,6 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
-  /// No description provided for @helloWorld.
-  ///
-  /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
-
-  /// No description provided for @flutterDemo.
-  ///
-  /// In en, this message translates to:
-  /// **'Flutter Demo'**
-  String get flutterDemo;
-
-  /// No description provided for @hello.
-  ///
-  /// In en, this message translates to:
-  /// **'Hello'**
-  String get hello;
-
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
@@ -128,11 +110,53 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUp;
 
+  /// No description provided for @enterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Name'**
+  String get enterYourName;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @nameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get nameRequired;
+
+  /// No description provided for @enterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterYourEmail;
+
   /// No description provided for @email.
   ///
   /// In en, this message translates to:
   /// **'Email'**
   String get email;
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get emailRequired;
+
+  /// No description provided for @enterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get enterValidEmail;
+
+  /// No description provided for @enterYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterYourPassword;
 
   /// No description provided for @password.
   ///
@@ -140,53 +164,149 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get passwordRequired;
+
+  /// No description provided for @passwordMinLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get passwordMinLength;
+
+  /// No description provided for @passwordUppercase.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain at least one uppercase letter'**
+  String get passwordUppercase;
+
+  /// No description provided for @passwordNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain at least one number'**
+  String get passwordNumber;
+
+  /// No description provided for @confirmYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmYourPassword;
+
   /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:
   /// **'Confirm Password'**
   String get confirmPassword;
 
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
   /// No description provided for @rememberMe.
   ///
   /// In en, this message translates to:
-  /// **'Remember Me'**
+  /// **'Remember me'**
   String get rememberMe;
 
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password'**
+  /// **'Forgot password?'**
   String get forgotPassword;
 
   /// No description provided for @accessSecureTerminal.
   ///
   /// In en, this message translates to:
-  /// **'Access Secure Terminal'**
+  /// **'ACCESS SECURE TERMINAL'**
   String get accessSecureTerminal;
 
   /// No description provided for @orContinueWith.
   ///
   /// In en, this message translates to:
-  /// **'Or Continue With'**
+  /// **'OR CONTINUE WITH'**
   String get orContinueWith;
+
+  /// No description provided for @verifyYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Your Email'**
+  String get verifyYourEmail;
+
+  /// No description provided for @verificationEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a verification email. Please check your inbox and verify, then login again.'**
+  String get verificationEmailSent;
+
+  /// No description provided for @verificationEmailSentToUser.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a verification email. Please verify and login.'**
+  String get verificationEmailSentToUser;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @welcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get welcomeUser;
+
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failed'**
+  String get loginFailed;
+
+  /// No description provided for @signUpFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up Failed'**
+  String get signUpFailed;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Error'**
+  String get unknownError;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get cancelled;
+
+  /// No description provided for @googleSignInCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign in was cancelled'**
+  String get googleSignInCancelled;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
   /// **'Home'**
   String get home;
-
-  /// No description provided for @messageScan.
-  ///
-  /// In en, this message translates to:
-  /// **'Message Scan'**
-  String get messageScan;
-
-  /// No description provided for @urlScan.
-  ///
-  /// In en, this message translates to:
-  /// **'URL Scan'**
-  String get urlScan;
 
   /// No description provided for @history.
   ///
@@ -206,65 +326,53 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
-  /// No description provided for @tacticalOverview.
+  /// No description provided for @minutesAgo.
   ///
   /// In en, this message translates to:
-  /// **'Tactical Overview'**
-  String get tacticalOverview;
+  /// **'min ago'**
+  String get minutesAgo;
 
-  /// No description provided for @scansToday.
+  /// No description provided for @hoursAgo.
   ///
   /// In en, this message translates to:
-  /// **'Scans Today'**
-  String get scansToday;
+  /// **'hour ago'**
+  String get hoursAgo;
 
-  /// No description provided for @threatsDetected.
+  /// No description provided for @daysAgo.
   ///
   /// In en, this message translates to:
-  /// **'Threats Detected'**
-  String get threatsDetected;
+  /// **'day ago'**
+  String get daysAgo;
 
-  /// No description provided for @totalScans.
+  /// No description provided for @cleanScan.
   ///
   /// In en, this message translates to:
-  /// **'Total Scans'**
-  String get totalScans;
+  /// **'Clean Scan'**
+  String get cleanScan;
 
-  /// No description provided for @threatsBlocked.
+  /// No description provided for @phishing.
   ///
   /// In en, this message translates to:
-  /// **'Threats Blocked'**
-  String get threatsBlocked;
+  /// **'Phishing'**
+  String get phishing;
 
-  /// No description provided for @systemShieldEngaged.
+  /// No description provided for @safe.
   ///
   /// In en, this message translates to:
-  /// **'System Shield: Engaged'**
-  String get systemShieldEngaged;
+  /// **'Safe'**
+  String get safe;
 
-  /// No description provided for @messageScanDescription.
+  /// No description provided for @malicious.
   ///
   /// In en, this message translates to:
-  /// **'Analyze SMS, email, or text messages for phishing indicators.'**
-  String get messageScanDescription;
+  /// **'Malicious'**
+  String get malicious;
 
-  /// No description provided for @urlScanDescription.
+  /// No description provided for @scanHistory.
   ///
   /// In en, this message translates to:
-  /// **'Check links before opening them for phishing threats.'**
-  String get urlScanDescription;
-
-  /// No description provided for @recentScans.
-  ///
-  /// In en, this message translates to:
-  /// **'Recent Scans'**
-  String get recentScans;
-
-  /// No description provided for @viewHistory.
-  ///
-  /// In en, this message translates to:
-  /// **'View History'**
-  String get viewHistory;
+  /// **'Scan History'**
+  String get scanHistory;
 
   /// No description provided for @recentActivity.
   ///
@@ -272,23 +380,41 @@ abstract class AppLocalizations {
   /// **'Recent Activity'**
   String get recentActivity;
 
-  /// No description provided for @clearAll.
+  /// No description provided for @clearHistory.
   ///
   /// In en, this message translates to:
-  /// **'Clear All'**
-  String get clearAll;
+  /// **'Clear History'**
+  String get clearHistory;
 
-  /// No description provided for @yesterday.
+  /// No description provided for @clear.
   ///
   /// In en, this message translates to:
-  /// **'Yesterday'**
-  String get yesterday;
+  /// **'Clear'**
+  String get clear;
 
-  /// No description provided for @analyzeMessage.
+  /// No description provided for @clearAllScansConfirmation.
   ///
   /// In en, this message translates to:
-  /// **'Analyze Message'**
-  String get analyzeMessage;
+  /// **'Are you sure you want to clear all scans?'**
+  String get clearAllScansConfirmation;
+
+  /// No description provided for @noHistoryYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No history yet'**
+  String get noHistoryYet;
+
+  /// No description provided for @messageScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Scan'**
+  String get messageScan;
+
+  /// No description provided for @messageScanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyze SMS, email or technical text payloads for malicious strings.'**
+  String get messageScanDescription;
 
   /// No description provided for @threatAnalysisReport.
   ///
@@ -299,7 +425,7 @@ abstract class AppLocalizations {
   /// No description provided for @phishingProbability.
   ///
   /// In en, this message translates to:
-  /// **'Phishing Probability'**
+  /// **'PHISHING PROBABILITY'**
   String get phishingProbability;
 
   /// No description provided for @legitimate.
@@ -317,8 +443,50 @@ abstract class AppLocalizations {
   /// No description provided for @highPhishingRisk.
   ///
   /// In en, this message translates to:
-  /// **'High Phishing Risk'**
+  /// **'HIGH PHISHING RISK'**
   String get highPhishingRisk;
+
+  /// No description provided for @smsFilteringDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS Filtering is disabled'**
+  String get smsFilteringDisabled;
+
+  /// No description provided for @pleaseEnterMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a message to scan'**
+  String get pleaseEnterMessage;
+
+  /// No description provided for @enterMessageToScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter message to scan'**
+  String get enterMessageToScan;
+
+  /// No description provided for @noResultYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No result yet'**
+  String get noResultYet;
+
+  /// No description provided for @phishingDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'⚠️ Phishing Detected'**
+  String get phishingDetected;
+
+  /// No description provided for @maliciousMessageNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'The message you scanned is malicious'**
+  String get maliciousMessageNotification;
+
+  /// No description provided for @analyzeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyze Message'**
+  String get analyzeMessage;
 
   /// No description provided for @aiTacticalInsight.
   ///
@@ -326,17 +494,53 @@ abstract class AppLocalizations {
   /// **'AI Tactical Insight'**
   String get aiTacticalInsight;
 
-  /// No description provided for @sourceIp.
+  /// No description provided for @confidenceScore.
   ///
   /// In en, this message translates to:
-  /// **'Source IP'**
-  String get sourceIp;
+  /// **'CONFIDENCE SCORE'**
+  String get confidenceScore;
 
-  /// No description provided for @encryption.
+  /// No description provided for @mlProbability.
   ///
   /// In en, this message translates to:
-  /// **'Encryption'**
-  String get encryption;
+  /// **'ML PROBABILITY'**
+  String get mlProbability;
+
+  /// No description provided for @finalVerdict.
+  ///
+  /// In en, this message translates to:
+  /// **'FINAL VERDICT'**
+  String get finalVerdict;
+
+  /// No description provided for @urlAppearsSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'URL APPEARS SAFE'**
+  String get urlAppearsSafe;
+
+  /// No description provided for @urlAppearsUnsafe.
+  ///
+  /// In en, this message translates to:
+  /// **'URL APPEARS UNSAFE'**
+  String get urlAppearsUnsafe;
+
+  /// No description provided for @prediction.
+  ///
+  /// In en, this message translates to:
+  /// **'Prediction'**
+  String get prediction;
+
+  /// No description provided for @riskLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'RISK LEVEL'**
+  String get riskLevel;
+
+  /// No description provided for @legitimateProbability.
+  ///
+  /// In en, this message translates to:
+  /// **'LEGITIMATE PROBABILITY'**
+  String get legitimateProbability;
 
   /// No description provided for @scanUrl.
   ///
@@ -344,53 +548,191 @@ abstract class AppLocalizations {
   /// **'Scan URL'**
   String get scanUrl;
 
-  /// No description provided for @paste.
+  /// No description provided for @urlScanDescription.
   ///
   /// In en, this message translates to:
-  /// **'Paste'**
-  String get paste;
+  /// **'Check links before you click. Cross-references 50+ threat databases.'**
+  String get urlScanDescription;
 
-  /// No description provided for @finalVerdict.
+  /// No description provided for @urlScreenshot.
   ///
   /// In en, this message translates to:
-  /// **'Final Verdict'**
-  String get finalVerdict;
-
-  /// No description provided for @urlAppearsSafe.
-  ///
-  /// In en, this message translates to:
-  /// **'URL Appears Safe'**
-  String get urlAppearsSafe;
-
-  /// No description provided for @structureAnalysis.
-  ///
-  /// In en, this message translates to:
-  /// **'Structure Analysis'**
-  String get structureAnalysis;
-
-  /// No description provided for @protocol.
-  ///
-  /// In en, this message translates to:
-  /// **'Protocol'**
-  String get protocol;
-
-  /// No description provided for @domain.
-  ///
-  /// In en, this message translates to:
-  /// **'Domain'**
-  String get domain;
-
-  /// No description provided for @pathAndParams.
-  ///
-  /// In en, this message translates to:
-  /// **'Path & Parameters'**
-  String get pathAndParams;
+  /// **'Screenshot of the URL\'s landing page'**
+  String get urlScreenshot;
 
   /// No description provided for @reportThisUrl.
   ///
   /// In en, this message translates to:
-  /// **'Report This URL'**
+  /// **'REPORT THIS URL'**
   String get reportThisUrl;
+
+  /// No description provided for @urlAnalysisDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis based on real-time heuristics and crowdsourced intelligence. Always verify the sender of the link.'**
+  String get urlAnalysisDisclaimer;
+
+  /// No description provided for @pleaseEnterUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter URL'**
+  String get pleaseEnterUrl;
+
+  /// No description provided for @invalidUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid URL'**
+  String get invalidUrl;
+
+  /// No description provided for @enterUrlToScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter URL to scan'**
+  String get enterUrlToScan;
+
+  /// No description provided for @paste.
+  ///
+  /// In en, this message translates to:
+  /// **'PASTE'**
+  String get paste;
+
+  /// No description provided for @safePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe Preview'**
+  String get safePreview;
+
+  /// No description provided for @previewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Previewing'**
+  String get previewing;
+
+  /// No description provided for @navigationBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation blocked'**
+  String get navigationBlocked;
+
+  /// No description provided for @scanning.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning...'**
+  String get scanning;
+
+  /// No description provided for @openSafePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Safe Preview'**
+  String get openSafePreview;
+
+  /// No description provided for @blockedUnsafeUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked: URL marked as unsafe'**
+  String get blockedUnsafeUrl;
+
+  /// No description provided for @failedToScanUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to scan URL'**
+  String get failedToScanUrl;
+
+  /// No description provided for @urlScan.
+  ///
+  /// In en, this message translates to:
+  /// **'URL Scan'**
+  String get urlScan;
+
+  /// No description provided for @maliciousUrlNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'The URL you scanned is malicious'**
+  String get maliciousUrlNotification;
+
+  /// No description provided for @systemShield.
+  ///
+  /// In en, this message translates to:
+  /// **'System Shield'**
+  String get systemShield;
+
+  /// No description provided for @engaged.
+  ///
+  /// In en, this message translates to:
+  /// **'Engaged'**
+  String get engaged;
+
+  /// No description provided for @realTimeMonitoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Real-time heuristics monitoring active.'**
+  String get realTimeMonitoring;
+
+  /// No description provided for @tacticalOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical Overview'**
+  String get tacticalOverview;
+
+  /// No description provided for @scans.
+  ///
+  /// In en, this message translates to:
+  /// **'SCANS'**
+  String get scans;
+
+  /// No description provided for @threatsDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'THREATS DETECTED'**
+  String get threatsDetected;
+
+  /// No description provided for @emailVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verified'**
+  String get emailVerified;
+
+  /// No description provided for @emailNotVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Not Verified'**
+  String get emailNotVerified;
+
+  /// No description provided for @emailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Sent'**
+  String get emailSent;
+
+  /// No description provided for @checkInboxVerifyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your inbox and verify your email.'**
+  String get checkInboxVerifyEmail;
+
+  /// No description provided for @resendVerificationEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Verification Email'**
+  String get resendVerificationEmail;
+
+  /// No description provided for @totalScans.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Scans'**
+  String get totalScans;
+
+  /// No description provided for @threatsBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Threats Blocked'**
+  String get threatsBlocked;
+
+  /// No description provided for @noUserFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No user found'**
+  String get noUserFound;
 
   /// No description provided for @accountSecurity.
   ///
@@ -404,16 +746,16 @@ abstract class AppLocalizations {
   /// **'Enhanced Protection'**
   String get enhancedProtection;
 
-  /// No description provided for @authentication.
+  /// No description provided for @activePremium.
   ///
   /// In en, this message translates to:
-  /// **'Authentication'**
-  String get authentication;
+  /// **'Active • Premium'**
+  String get activePremium;
 
   /// No description provided for @twoFactorEnabled.
   ///
   /// In en, this message translates to:
-  /// **'Two-Factor Enabled'**
+  /// **'Two-factor enabled'**
   String get twoFactorEnabled;
 
   /// No description provided for @alertPreferences.
@@ -425,7 +767,7 @@ abstract class AppLocalizations {
   /// No description provided for @immediateNotifications.
   ///
   /// In en, this message translates to:
-  /// **'Immediate Notifications'**
+  /// **'Immediate notifications'**
   String get immediateNotifications;
 
   /// No description provided for @signOut.
@@ -434,29 +776,11 @@ abstract class AppLocalizations {
   /// **'Sign Out'**
   String get signOut;
 
-  /// No description provided for @security.
+  /// No description provided for @signOutConfirmation.
   ///
   /// In en, this message translates to:
-  /// **'Security'**
-  String get security;
-
-  /// No description provided for @realTimeProtection.
-  ///
-  /// In en, this message translates to:
-  /// **'Real-time Protection'**
-  String get realTimeProtection;
-
-  /// No description provided for @deepInspection.
-  ///
-  /// In en, this message translates to:
-  /// **'Deep Inspection'**
-  String get deepInspection;
-
-  /// No description provided for @smsFiltering.
-  ///
-  /// In en, this message translates to:
-  /// **'SMS Filtering'**
-  String get smsFiltering;
+  /// **'Are you sure you want to sign out?'**
+  String get signOutConfirmation;
 
   /// No description provided for @preferences.
   ///
@@ -470,17 +794,47 @@ abstract class AppLocalizations {
   /// **'Notifications'**
   String get notifications;
 
+  /// No description provided for @immediateThreatAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Immediate threat alerts'**
+  String get immediateThreatAlerts;
+
   /// No description provided for @darkMode.
   ///
   /// In en, this message translates to:
   /// **'Dark Mode'**
   String get darkMode;
 
+  /// No description provided for @lightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get lightMode;
+
+  /// No description provided for @oledOptimizedInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'OLED optimized interface'**
+  String get oledOptimizedInterface;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// No description provided for @englishUs.
+  ///
+  /// In en, this message translates to:
+  /// **'English (US)'**
+  String get englishUs;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
 
   /// No description provided for @resources.
   ///
@@ -500,29 +854,59 @@ abstract class AppLocalizations {
   /// **'Privacy Policy'**
   String get privacyPolicy;
 
-  /// No description provided for @safe.
+  /// No description provided for @security.
   ///
   /// In en, this message translates to:
-  /// **'Safe'**
-  String get safe;
+  /// **'Security'**
+  String get security;
 
-  /// No description provided for @malicious.
+  /// No description provided for @realTimeProtection.
   ///
   /// In en, this message translates to:
-  /// **'Malicious'**
-  String get malicious;
+  /// **'Real Time Protection'**
+  String get realTimeProtection;
 
-  /// No description provided for @active.
+  /// No description provided for @scanningIncomingLinks.
   ///
   /// In en, this message translates to:
-  /// **'Active'**
-  String get active;
+  /// **'Scanning all incoming links'**
+  String get scanningIncomingLinks;
 
-  /// No description provided for @premium.
+  /// No description provided for @deepInspection.
   ///
   /// In en, this message translates to:
-  /// **'Premium'**
-  String get premium;
+  /// **'Deep Inspection'**
+  String get deepInspection;
+
+  /// No description provided for @extendedSandboxAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended sandbox analysis'**
+  String get extendedSandboxAnalysis;
+
+  /// No description provided for @smsFiltering.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS Filtering'**
+  String get smsFiltering;
+
+  /// No description provided for @blockMaliciousMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Block malicious text messages'**
+  String get blockMaliciousMessages;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @authentication.
+  ///
+  /// In en, this message translates to:
+  /// **'authentication'**
+  String get authentication;
 }
 
 class _AppLocalizationsDelegate

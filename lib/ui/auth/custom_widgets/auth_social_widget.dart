@@ -5,6 +5,7 @@ import 'package:catch_a_phish/Core/utils/app_routes.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -86,13 +87,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title: 'Success',
+        title: AppLocalizations.of(context)!.success,
         message: 'Welcome ${userCredential.user?.email}',
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName: 'OK',
+        posActionName: AppLocalizations.of(context)!.ok,
         posActionCallBack: () {
           Navigator.pushReplacementNamed(context, AppRoutes.home);
         },
@@ -104,13 +105,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title: 'Login Failed',
-        message: e.message ?? 'Unknown Error',
+        title: AppLocalizations.of(context)!.login,
+        message: e.message ?? AppLocalizations.of(context)!.unknownError,
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName: 'OK',
+        posActionName: AppLocalizations.of(context)!.ok,
       );
     }
   }
@@ -134,13 +135,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
         AppDialogUtils.showMessage(
           context: context,
-          title: 'Cancelled',
-          message: 'Google sign in was cancelled',
+          title:  AppLocalizations.of(context)!.cancelled,
+          message:  AppLocalizations.of(context)!.googleSignInCancelled,
           dialogBackgroundColor: AppColors.navyBackground,
           dismissible: false,
           titleStyle: AppStyles.semiBold16White,
           messageStyle: AppStyles.semiBold12SkyBlue,
-          posActionName: 'OK',
+          posActionName:  AppLocalizations.of(context)!.ok,
         );
         return;
       }
@@ -159,13 +160,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title: 'Success',
-        message: 'Welcome ${userCredential.user?.email}',
+        title:  AppLocalizations.of(context)!.ok,
+        message: '${ AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName: 'OK',
+        posActionName:  AppLocalizations.of(context)!.ok,
         posActionCallBack: () {
           Navigator.pushReplacementNamed(context, AppRoutes.home);
         },
@@ -177,13 +178,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title: 'Login Failed',
-        message: e.message ?? 'Unknown Error',
+        title:  AppLocalizations.of(context)!.loginFailed,
+        message: e.message ??  AppLocalizations.of(context)!.unknownError,
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName: 'OK',
+        posActionName:  AppLocalizations.of(context)!.ok,
       );
     }
   }

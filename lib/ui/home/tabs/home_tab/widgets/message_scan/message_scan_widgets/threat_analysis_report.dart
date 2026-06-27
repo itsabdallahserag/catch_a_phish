@@ -4,15 +4,19 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_widgets/phishing_prob.dart';
 import 'package:catch_a_phish/api/models/message/PredictResponce.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ThreatAnalysisReport extends StatelessWidget {
-  final PredictResponce result ;
-  const ThreatAnalysisReport({super.key,required this.result});
+  final PredictResponce result;
+
+  const ThreatAnalysisReport({super.key, required this.result});
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -24,20 +28,26 @@ class ThreatAnalysisReport extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Threat Analysis Report', style: AppStyles.semiBold18White),
+              Text(
+                AppLocalizations.of(context)!.threatAnalysisReport,
+                style: AppStyles.semiBold18White,
+              ),
               Image.asset(AppImages.iconExclamationMark, height: 24, width: 24),
             ],
           ),
           SizedBox(height: height * 0.02),
+
           PhishingProb(
             radius: 45.0,
             centerStyle: AppStyles.black16Coral,
             footerStyle: AppStyles.semiBold12Coral,
-            footerText: 'Phishing Probability',
+            footerText: AppLocalizations.of(context)!.phishingProbability,
             percent: (result.scores?.phishing ?? 0) / 100,
             progressColor: AppColors.coral,
           ),
+
           SizedBox(height: height * 0.02),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -45,7 +55,7 @@ class ThreatAnalysisReport extends StatelessWidget {
                 radius: 40.0,
                 centerStyle: AppStyles.black16AquaGreen,
                 footerStyle: AppStyles.semiBold12AquaGreen,
-                footerText: 'Ligitimate',
+                footerText: AppLocalizations.of(context)!.legitimate,
                 percent: (result.scores?.legit ?? 0) / 100,
                 progressColor: AppColors.aquaGreen,
               ),
@@ -53,13 +63,15 @@ class ThreatAnalysisReport extends StatelessWidget {
                 radius: 40.0,
                 centerStyle: AppStyles.black16SkyBlue,
                 footerStyle: AppStyles.semiBold12SkyBlue,
-                footerText: 'Spam Score',
+                footerText: AppLocalizations.of(context)!.spamScore,
                 percent: (result.scores?.spam ?? 0) / 100,
                 progressColor: AppColors.skyBlue,
               ),
             ],
           ),
+
           SizedBox(height: height * 0.03),
+
           AuthActionButton(
             borderColor: AppColors.red,
             gradientColors: [AppColors.darkRed50, AppColors.darkRed50],
@@ -69,7 +81,7 @@ class ThreatAnalysisReport extends StatelessWidget {
                 Image.asset(AppImages.iconRisk, height: 24, width: 24),
                 SizedBox(width: width * 0.02),
                 Text(
-                  'HIGH PHISHING RISK',
+                  AppLocalizations.of(context)!.highPhishingRisk,
                   style: AppStyles.medium14Red,
                 ),
               ],

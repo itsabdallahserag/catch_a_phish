@@ -1,3 +1,6 @@
+import 'package:catch_a_phish/Core/utils/app_colors.dart';
+import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -27,18 +30,20 @@ class _WebViewScreenState extends State<WebViewScreen> {
           onNavigationRequest: (request) {
             final uri = Uri.parse(request.url);
 
-            final host = uri.host.toLowerCase(); // <-- FIX: normalize lowercase
-            final original = originalHost.toLowerCase(); // <-- FIX
+            final host = uri.host.toLowerCase();
+            final original = originalHost.toLowerCase();
 
-            // 🔐 FIX: protection against empty or malformed URLs
             if (host.isEmpty ||
                 original.isEmpty ||
                 normalize(host) != normalize(original)) {
-              // ⚠️ FIX: prevent crash if screen closed
               if (!mounted) return NavigationDecision.prevent;
 
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Navigation blocked")),
+                SnackBar(
+                  content: Text(
+                    AppLocalizations.of(context)!.navigationBlocked,
+                  ),
+                ),
               );
 
               return NavigationDecision.prevent;
@@ -56,21 +61,19 @@ class _WebViewScreenState extends State<WebViewScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("🛡 Safe Preview")),
-
+        title: Text(AppLocalizations.of(context)!.safePreview),
+      ),
       body: Column(
         children: [
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(12),
-            color: Colors.green,
-
+            color: AppColors.green,
             child: Text(
-              "Previewing : $originalHost",
-              style: const TextStyle(color: Colors.white),
+              "${AppLocalizations.of(context)!.previewing}: $originalHost",
+              style: AppStyles.regular16White,
             ),
           ),
-
           Expanded(child: WebViewWidget(controller: webController)),
         ],
       ),
@@ -78,8 +81,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
   }
 
   String normalize(String host) {
-    return host
-        .replaceAll('www.', '') // <-- FIX: remove common fake variation
-        .toLowerCase(); // <-- FIX: case-insensitive comparison
+    return host.replaceAll('www.', '').toLowerCase();
   }
 }

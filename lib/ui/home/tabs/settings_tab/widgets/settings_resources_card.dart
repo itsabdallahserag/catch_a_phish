@@ -2,6 +2,7 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/url_scan/webview/web_view_screen.dart';
 import 'package:catch_a_phish/Ui/home/tabs/settings_tab/widgets/settings_item.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class SettingsResourcesCard extends StatelessWidget {
@@ -10,9 +11,9 @@ class SettingsResourcesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+
     return Container(
-      padding: EdgeInsets.all(14),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: AppColors.blackOverlay50,
         borderRadius: BorderRadius.circular(14),
@@ -20,12 +21,17 @@ class SettingsResourcesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Resources', style: AppStyles.semiBold10LightGrey2),
+          Text(
+            AppLocalizations.of(context)!.resources,
+            style: AppStyles.semiBold10LightGrey2,
+          ),
+
           SizedBox(height: height * 0.02),
+
           SettingsItem(
             onChanged: (value) {},
             isLanguage: true,
-            titleItem: 'Help Center',
+            titleItem: AppLocalizations.of(context)!.helpCenter,
             description: '',
             isActive: true,
             onPressedLanguage: () => Navigator.push(
@@ -37,11 +43,13 @@ class SettingsResourcesCard extends StatelessWidget {
               ),
             ),
           ),
+
           SizedBox(height: height * 0.02),
+
           SettingsItem(
             onChanged: (value) {},
             isLanguage: true,
-            titleItem: 'Privacy Policy',
+            titleItem: AppLocalizations.of(context)!.privacyPolicy,
             description: '',
             isActive: true,
             onPressedLanguage: () => Navigator.push(

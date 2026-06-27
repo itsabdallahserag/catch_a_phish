@@ -2,6 +2,7 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/widgets/message_scan/message_scan_screen.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MessageScanButton extends StatelessWidget {
@@ -9,7 +10,7 @@ class MessageScanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        var height = MediaQuery.of(context).size.height;
+    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
@@ -53,11 +54,10 @@ class MessageScanButton extends StatelessWidget {
                 Spacer(),
               ],
             ),
-            SizedBox(height: height*0.02,),
-            Text('Message Scan', style: AppStyles.semiBold20White),
+            SizedBox(height: height * 0.02),
             Text(
-              'Analyze SMS, email or technical text payloads for malicious strings.',
-              style: AppStyles.semiLight12LightGrey,
+              AppLocalizations.of(context)!.messageScan,
+              style: AppStyles.semiBold20White,
             ),
           ],
         ),

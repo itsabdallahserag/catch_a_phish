@@ -1,11 +1,16 @@
 import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class StatisticsCards extends StatelessWidget {
-  final int totalScans ;
-  final int threatsBlocked ;
-  const StatisticsCards({super.key,required this.totalScans,required this.threatsBlocked});
+  final int totalScans;
+  final int threatsBlocked;
+  const StatisticsCards({
+    super.key,
+    required this.totalScans,
+    required this.threatsBlocked,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +29,16 @@ class StatisticsCards extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('Total Scans', style: AppStyles.regular12MediumGrey3),
+                Text(
+                  AppLocalizations.of(context)!.totalScans,
+                  style: AppStyles.regular12MediumGrey3,
+                ),
                 Text('$totalScans', style: AppStyles.light30White),
-                ],
-              
+              ],
             ),
           ),
         ),
-        SizedBox(width: width*0.02,),
+        SizedBox(width: width * 0.02),
         Expanded(
           child: Container(
             padding: EdgeInsets.all(32),
@@ -44,10 +51,12 @@ class StatisticsCards extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('Threats Blocked', style: AppStyles.regular12MediumGrey3),
+                Text(
+                  AppLocalizations.of(context)!.threatsBlocked,
+                  style: AppStyles.regular12MediumGrey3,
+                ),
                 Text('$threatsBlocked', style: AppStyles.light30White),
-                ],
-              
+              ],
             ),
           ),
         ),

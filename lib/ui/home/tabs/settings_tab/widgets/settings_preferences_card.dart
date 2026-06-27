@@ -3,6 +3,7 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Ui/home/tabs/settings_tab/widgets/settings_item.dart';
 import 'package:catch_a_phish/providers/app_locale_provider.dart';
 import 'package:catch_a_phish/providers/app_theme_provider.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ class SettingsPreferencesCard extends StatelessWidget {
   final Function(bool)? onNotificationsChanged;
   final Function(bool)? onDarkModeChanged;
   final void Function()? onPressedLanguage;
+
   const SettingsPreferencesCard({
     super.key,
     required this.notifications,
@@ -39,13 +41,16 @@ class SettingsPreferencesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Preferences', style: AppStyles.semiBold10LightGrey2),
+          Text(
+            AppLocalizations.of(context)!.preferences,
+            style: AppStyles.semiBold10LightGrey2,
+          ),
 
           SizedBox(height: height * 0.02),
 
           SettingsItem(
-            titleItem: 'Notifications',
-            description: 'Immediate threat alerts',
+            titleItem: AppLocalizations.of(context)!.notifications,
+            description: AppLocalizations.of(context)!.immediateThreatAlerts,
             isActive: notifications ?? true,
             onChanged: onNotificationsChanged ?? (_) {},
           ),
@@ -54,9 +59,9 @@ class SettingsPreferencesCard extends StatelessWidget {
 
           SettingsItem(
             titleItem: appThemeProvider.appTheme == ThemeMode.dark
-                ? 'Dark Mode'
-                : 'Light Mode',
-            description: 'OLED optimized interface',
+                ? AppLocalizations.of(context)!.darkMode
+                : AppLocalizations.of(context)!.lightMode,
+            description: AppLocalizations.of(context)!.oledOptimizedInterface,
             isActive: darkMode ?? true,
             onChanged: onDarkModeChanged ?? (_) {},
           ),
@@ -66,10 +71,10 @@ class SettingsPreferencesCard extends StatelessWidget {
           SettingsItem(
             onChanged: (value) {},
             isLanguage: true,
-            titleItem: 'Language',
+            titleItem: AppLocalizations.of(context)!.language,
             description: appLocaleProvider.appLanguage == 'en'
-                ? 'English (US)'
-                : 'العربية',
+                ? AppLocalizations.of(context)!.englishUs
+                : AppLocalizations.of(context)!.arabic,
             isActive: false,
             onPressedLanguage: onPressedLanguage ?? () {},
           ),

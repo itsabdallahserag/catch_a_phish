@@ -5,9 +5,11 @@ import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
 import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
+import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/authentication_screen.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/profile_image.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/security_item.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/widgets/statistics_cards.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -49,7 +51,7 @@ class _ProfileTabState extends State<ProfileTab> {
     }
 
     if (user == null) {
-      return const Center(child: Text("No user found"));
+      return Center(child: Text(AppLocalizations.of(context)!.noUserFound));
     }
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -65,44 +67,55 @@ class _ProfileTabState extends State<ProfileTab> {
             SizedBox(height: height * 0.01),
             Text(user!.email!, style: AppStyles.semiBold16MediumGrey2),
             SizedBox(height: height * 0.02),
-            StatisticsCards(threatsBlocked: user!.threatsBlocked,totalScans: user!.totalScans,),
+            StatisticsCards(
+              threatsBlocked: user!.threatsBlocked,
+              totalScans: user!.totalScans,
+            ),
             SizedBox(height: height * 0.02),
             Row(
               children: [
-                Text('Account Security', style: AppStyles.medium10mediumGrey),
+                Text(
+                  AppLocalizations.of(context)!.accountSecurity,
+                  style: AppStyles.medium10mediumGrey,
+                ),
                 Spacer(),
               ],
             ),
             SizedBox(height: height * 0.01),
             SecurityItem(
               icon: Icons.security_rounded,
-              titleText: 'Enhanced Protection',
-              bodyText: 'Active • Premium',
+              titleText: AppLocalizations.of(context)!.enhancedProtection,
+              bodyText: AppLocalizations.of(context)!.activePremium,
             ),
             SizedBox(height: height * 0.02),
             SecurityItem(
               icon: Icons.lock,
-              titleText: 'Authentication',
-              bodyText: 'Two-factor enabled',
+              titleText: AppLocalizations.of(context)!.authentication,
+              bodyText: AppLocalizations.of(context)!.twoFactorEnabled,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => AuthenticationScreen()),
+              ),
             ),
             SizedBox(height: height * 0.02),
             SecurityItem(
               icon: Icons.notifications,
-              titleText: 'Alert Preferences',
-              bodyText: 'Immediate notifications',
+              titleText: AppLocalizations.of(context)!.alertPreferences,
+              bodyText: AppLocalizations.of(context)!.immediateNotifications,
             ),
             SizedBox(height: height * 0.02),
             AuthActionButton(
               onTap: () {
                 AppDialogUtils.showMessage(
                   context: context,
-                  message: 'Are you sure you want to sign out?',
-                  title: 'Sign Out',
-                  negActionName: 'cancel',
+                  message: AppLocalizations.of(context)!.signOutConfirmation,
+                  title: AppLocalizations.of(context)!.signOut,
+                  negActionName: AppLocalizations.of(context)!.cancel,
+
                   negActionCallBack: () {
                     Navigator.pop(context);
                   },
-                  posActionName: 'signout',
+                  posActionName: AppLocalizations.of(context)!.signOut,
                   posActionCallBack: () async {
                     Navigator.of(context).pop();
 
@@ -124,7 +137,10 @@ class _ProfileTabState extends State<ProfileTab> {
                 AppColors.blackOverlay80,
                 AppColors.blackOverlay80,
               ],
-              child: Text('Sign Out', style: AppStyles.medium14Red),
+              child: Text(
+                AppLocalizations.of(context)!.signOut,
+                style: AppStyles.medium14Red,
+              ),
             ),
           ],
         ),

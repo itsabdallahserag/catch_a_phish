@@ -2,6 +2,7 @@ import 'package:catch_a_phish/Core/utils/app_colors.dart';
 import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Firbase_utils/models/scan_history_model.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ItemHistory extends StatelessWidget {
@@ -11,15 +12,15 @@ class ItemHistory extends StatelessWidget {
 
   bool get isSafe => scan.result == "legitimate";
 
-  String timeAgo(DateTime date) {
+  String timeAgo(BuildContext context, DateTime date) {
     final diff = DateTime.now().difference(date);
 
     if (diff.inMinutes < 60) {
-      return "${diff.inMinutes} min ago";
+      return "${diff.inMinutes} ${AppLocalizations.of(context)!.minutesAgo}";
     } else if (diff.inHours < 24) {
-      return "${diff.inHours} hour ago";
+      return "${diff.inHours} ${AppLocalizations.of(context)!.hoursAgo}";
     } else {
-      return "${diff.inDays} day ago";
+      return "${diff.inDays} ${AppLocalizations.of(context)!.daysAgo}";
     }
   }
 
@@ -58,7 +59,7 @@ class ItemHistory extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "${timeAgo(scan.createdAt!)} • ${isSafe ? "Clean Scan" : "Phishing"}",
+                  "${timeAgo(context, scan.createdAt!)} • ${isSafe ? AppLocalizations.of(context)!.cleanScan : AppLocalizations.of(context)!.phishing}",
                   style: AppStyles.regular12LightGrey,
                 ),
               ],
@@ -73,7 +74,9 @@ class ItemHistory extends StatelessWidget {
               color: AppColors.glassGrey,
             ),
             child: Text(
-              isSafe ? "Safe" : "Malicious",
+              isSafe
+                  ? AppLocalizations.of(context)!.safe
+                  : AppLocalizations.of(context)!.malicious,
               style: isSafe ? AppStyles.semiBold12Coral : AppStyles.bold12Red,
             ),
           ),

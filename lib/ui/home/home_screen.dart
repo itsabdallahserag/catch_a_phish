@@ -5,6 +5,7 @@ import 'package:catch_a_phish/Ui/home/tabs/history_tab/history_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/home_tab/home_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/profile_tab/profile_tab.dart';
 import 'package:catch_a_phish/Ui/home/tabs/settings_tab/settings_tab.dart';
+import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,14 +16,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> tabs = [HomeTab(), HistoryTab(), ProfileTab(), SettingsTab()];
   int selectedIndex = 0;
+
+  final List<Widget> tabs = const [
+    HomeTab(),
+    HistoryTab(),
+    ProfileTab(),
+    SettingsTab(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
+    final t = AppLocalizations.of(context)!;
+
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppImages.primaryBackground),
           fit: BoxFit.fill,
@@ -44,25 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedLabelStyle: AppStyles.medium10midnightBlue,
             unselectedLabelStyle: AppStyles.medium10mediumGrey,
             currentIndex: selectedIndex,
-            onTap: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
+            onTap: (index) => setState(() => selectedIndex = index),
             items: [
-              buildBottomNavigationBarItem(0, AppImages.iconHome, 'Home'),
-              buildBottomNavigationBarItem(1, AppImages.iconHistory, 'History'),
-              buildBottomNavigationBarItem(2, AppImages.iconProfile, 'Profile'),
+              buildBottomNavigationBarItem(0, AppImages.iconHome, t.home),
+              buildBottomNavigationBarItem(1, AppImages.iconHistory, t.history),
+              buildBottomNavigationBarItem(2, AppImages.iconProfile, t.profile),
               buildBottomNavigationBarItem(
                 3,
-
                 AppImages.iconSettings,
-                'Settings',
+                t.settings,
               ),
             ],
           ),
         ),
-
         body: tabs[selectedIndex],
       ),
     );
@@ -84,25 +89,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-/* appBar: AppBar(
-          toolbarHeight: height * 0.1,
-          backgroundColor: AppColors.darkGrey,
-          elevation: 0,
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(child: Image.asset(AppImages.splash,fit: BoxFit.cover, height: height * 0.14)),
-                SizedBox(width: width * 0.5), 
-                Expanded(
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.whiteColor,
-                    child: Icon(Icons.person, color: Colors.grey),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ), */
