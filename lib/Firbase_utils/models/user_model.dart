@@ -3,6 +3,7 @@ class UserModel {
     this.uid,
     this.name,
     this.email,
+    this.photoUrl,
     this.realTimeProtection = true,
     this.deepInspection = false,
     this.smsFiltering = true,
@@ -18,6 +19,7 @@ class UserModel {
           uid: json['uid'],
           name: json['name'],
           email: json['email'],
+          photoUrl: json['photoUrl'],
           realTimeProtection: json['realTimeProtection'] ?? true,
           deepInspection: json['deepInspection'] ?? false,
           smsFiltering: json['smsFiltering'] ?? true,
@@ -31,14 +33,19 @@ class UserModel {
   String? uid;
   String? name;
   String? email;
+  String? photoUrl;
+
   int totalScans;
   int threatsBlocked;
+
   bool realTimeProtection;
   bool deepInspection;
   bool smsFiltering;
   bool notifications;
   bool darkMode;
+
   String language;
+
   static const String collectionName = 'Users';
 
   Map<String, dynamic> toFirestore() {
@@ -46,6 +53,7 @@ class UserModel {
       'uid': uid,
       'name': name,
       'email': email,
+      'photoUrl': photoUrl,
       'totalScans': totalScans,
       'threatsBlocked': threatsBlocked,
       'realTimeProtection': realTimeProtection,
@@ -61,6 +69,7 @@ class UserModel {
     String? uid,
     String? name,
     String? email,
+    String? photoUrl,
     int? totalScans,
     int? threatsBlocked,
     bool? realTimeProtection,
@@ -68,12 +77,13 @@ class UserModel {
     bool? smsFiltering,
     bool? notifications,
     bool? darkMode,
-    String? language
+    String? language,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
       name: name ?? this.name,
       email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
       totalScans: totalScans ?? this.totalScans,
       threatsBlocked: threatsBlocked ?? this.threatsBlocked,
       realTimeProtection: realTimeProtection ?? this.realTimeProtection,
@@ -81,7 +91,7 @@ class UserModel {
       smsFiltering: smsFiltering ?? this.smsFiltering,
       notifications: notifications ?? this.notifications,
       darkMode: darkMode ?? this.darkMode,
-      language: language ?? this.language
+      language: language ?? this.language,
     );
   }
 }

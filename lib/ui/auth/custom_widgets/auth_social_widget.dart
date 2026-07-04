@@ -135,16 +135,17 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
         AppDialogUtils.showMessage(
           context: context,
-          title:  AppLocalizations.of(context)!.cancelled,
-          message:  AppLocalizations.of(context)!.googleSignInCancelled,
+          title: AppLocalizations.of(context)!.cancelled,
+          message: AppLocalizations.of(context)!.googleSignInCancelled,
           dialogBackgroundColor: AppColors.navyBackground,
           dismissible: false,
           titleStyle: AppStyles.semiBold16White,
           messageStyle: AppStyles.semiBold12SkyBlue,
-          posActionName:  AppLocalizations.of(context)!.ok,
+          posActionName: AppLocalizations.of(context)!.ok,
         );
         return;
       }
+      print(userCredential.user!.uid);
 
       await FirebaseUtils.addUserToFireStore(
         UserModel(
@@ -153,6 +154,10 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
           email: userCredential.user!.email,
         ),
       );
+      final user = await FirebaseUtils.readUser();
+
+      print("UID = ${user?.uid}");
+      print("PHOTO = ${user?.photoUrl}");
 
       if (!mounted) return;
 
@@ -160,13 +165,14 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title:  AppLocalizations.of(context)!.ok,
-        message: '${ AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
+        title: AppLocalizations.of(context)!.ok,
+        message:
+            '${AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName:  AppLocalizations.of(context)!.ok,
+        posActionName: AppLocalizations.of(context)!.ok,
         posActionCallBack: () {
           Navigator.pushReplacementNamed(context, AppRoutes.home);
         },
@@ -178,13 +184,13 @@ class _AuthSocialWidgetState extends State<AuthSocialWidget> {
 
       AppDialogUtils.showMessage(
         context: context,
-        title:  AppLocalizations.of(context)!.loginFailed,
-        message: e.message ??  AppLocalizations.of(context)!.unknownError,
+        title: AppLocalizations.of(context)!.loginFailed,
+        message: e.message ?? AppLocalizations.of(context)!.unknownError,
         dialogBackgroundColor: AppColors.navyBackground,
         dismissible: false,
         titleStyle: AppStyles.semiBold16White,
         messageStyle: AppStyles.semiBold12SkyBlue,
-        posActionName:  AppLocalizations.of(context)!.ok,
+        posActionName: AppLocalizations.of(context)!.ok,
       );
     }
   }

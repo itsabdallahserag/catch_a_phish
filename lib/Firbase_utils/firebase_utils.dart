@@ -72,10 +72,14 @@ class FirebaseUtils {
         );
   }
 
-  static Future<void> addUserToFireStore(UserModel user) {
-    CollectionReference<UserModel> collectionReference = getUserCollection();
-    var docRef = collectionReference.doc(user.uid);
-    return docRef.set(user);
+  static Future<void> addUserToFireStore(UserModel user) async {
+    final docRef = getUserCollection().doc(user.uid);
+
+    final doc = await docRef.get();
+
+    if (!doc.exists) {
+      await docRef.set(user);
+    }
   }
 
   static Future<UserModel?> readUser() async {
@@ -152,5 +156,11 @@ class FirebaseUtils {
   }) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     await getUserCollection().doc(uid).update({updated: value});
+  }
+
+  static Future<void> updatePhotoUrl(String photoUrl) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+
+    await getUserCollection().doc(uid).update({'photoUrl': photoUrl});
   }
 }
