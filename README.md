@@ -281,6 +281,21 @@ All settings are synchronized with **Firebase Firestore**, ensuring that each us
 - Improved maintainability and scalability of the application.
 - Enhanced user experience with better language support.
 
+15) # Profile Image Feature
+
+## Added
+- Added `photoUrl` to `UserModel`.
+- Created `CloudinaryService` for image upload.
+- Added `updatePhotoUrl()` in `FirebaseUtils`.
+- Converted `ProfileImage` to `StatefulWidget`.
+- Implemented image selection from gallery using `image_picker`.
+- Uploaded profile images to Cloudinary.
+- Saved image URL in Firestore.
+- Displayed uploaded profile image instead of the default avatar.
+- Added loading indicator during image upload.
+  <img width="397" height="812" alt="image" src="https://github.com/user-attachments/assets/7a029acf-a633-4ddc-8284-7ae858a5d58a" />
+
+
 
 
 
