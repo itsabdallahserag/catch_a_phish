@@ -183,7 +183,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
     startLoading();
     try {
       final response = await ApiManager.urlCheck(controller.text.trim());
-      if(!mounted) return ;
+      if (!mounted) return;
       if (user?.notifications == true &&
           response.prediction?.toLowerCase() == 'phishing') {
         await NotificationService.showNotification(
@@ -211,6 +211,13 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
           createdAt: DateTime.now(),
         ),
       );
+
+      user = await FirebaseUtils.readUser();
+
+      if (!mounted) return;
+
+      setState(() {});
+
       updateResults(response, screenResponse);
     } catch (e) {
       debugPrint(e.toString());
@@ -218,7 +225,7 @@ class _UrlScanScreenState extends State<UrlScanScreen> {
       resetResults();
       AppDialogUtils.showMessage(
         context: context,
-       message: AppLocalizations.of(context)!.failedToScanUrl,
+        message: AppLocalizations.of(context)!.failedToScanUrl,
       );
     } finally {
       stopLoading();

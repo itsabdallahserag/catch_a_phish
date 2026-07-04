@@ -5,6 +5,7 @@ import 'package:catch_a_phish/Core/utils/app_images.dart';
 import 'package:catch_a_phish/Core/utils/app_styles.dart';
 import 'package:catch_a_phish/Core/utils/notification_service.dart';
 import 'package:catch_a_phish/Firbase_utils/firebase_utils.dart';
+import 'package:catch_a_phish/Firbase_utils/models/scan_history_model.dart';
 import 'package:catch_a_phish/Firbase_utils/models/user_model.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/auth_action_button.dart';
 import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
@@ -66,7 +67,9 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
 
     try {
       final response = await ApiManager.spamCheck(controller.text);
+
       if (!mounted) return;
+
       if (user?.notifications == true &&
           response.label?.toLowerCase() == 'phishing') {
         await NotificationService.showNotification(
@@ -74,6 +77,16 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
           body: AppLocalizations.of(context)!.maliciousMessageNotification,
         );
       }
+
+      await FirebaseUtils.addScan(
+        ScanHistoryModel(
+          url: controller.text,
+          result: response.label,
+          createdAt: DateTime.now(),
+        ),
+      );
+
+      user = await FirebaseUtils.readUser();
 
       if (!mounted) return;
 
@@ -135,18 +148,16 @@ class _MessageScanScreenState extends State<MessageScanScreen> {
                       controller: controller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(
-                            context,
-                          )!.pleaseEnterMessage;
+                          return AppLocalizations.of(context)!
+                              .pleaseEnterMessage;
                         }
                         return null;
                       },
                       cursorColor: AppColors.white,
                       hintStyle: AppStyles.regular16White,
                       style: AppStyles.regular16White,
-                      hintText: AppLocalizations.of(
-                        context,
-                      )!.enterMessageToScan,
+                      hintText: AppLocalizations.of(context)!
+                          .enterMessageToScan,
                       maxLines: 8,
                     ),
                   ),
