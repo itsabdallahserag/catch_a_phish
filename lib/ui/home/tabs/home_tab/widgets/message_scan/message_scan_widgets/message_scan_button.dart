@@ -6,32 +6,49 @@ import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MessageScanButton extends StatelessWidget {
-  const MessageScanButton({super.key});
+  final VoidCallback? onReturn;
+
+  const MessageScanButton({
+    super.key,
+    this.onReturn,
+  });
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                MessageScanScreen(),
+                const MessageScanScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
           ),
         );
+
+        onReturn?.call();
       },
       child: Container(
-        padding: EdgeInsets.only(bottom: 16, left: 24, top: 16),
+        padding: const EdgeInsets.only(
+          bottom: 16,
+          left: 24,
+          top: 16,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          gradient: LinearGradient(
-            colors: [AppColors.black, AppColors.neonGreenOverlay69],
+          gradient: const LinearGradient(
+            colors: [
+              AppColors.black,
+              AppColors.neonGreenOverlay69,
+            ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -43,7 +60,7 @@ class MessageScanButton extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: AppColors.darkGrey,
@@ -51,7 +68,7 @@ class MessageScanButton extends StatelessWidget {
                   ),
                   child: Image.asset(AppImages.iconMessage),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
             SizedBox(height: height * 0.02),

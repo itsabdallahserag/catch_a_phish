@@ -27,23 +27,21 @@ class _HistoryTabState extends State<HistoryTab> {
   }
 
   Future<void> loadScans() async {
+    if (!mounted) return;
+
     setState(() {
       isLoading = true;
     });
+
     scans = await FirebaseUtils.getUserScansOnce();
-    getUser();
+    user = await FirebaseUtils.readUser();
+
+    if (!mounted) return;
+
     setState(() {
       isLoading = false;
     });
   }
-
-  Future<void> getUser() async {
-    user = await FirebaseUtils.readUser();
-    if (!mounted) return;
-    setState(() {});
-  }
-
-
 
   @override
   Widget build(BuildContext context) {

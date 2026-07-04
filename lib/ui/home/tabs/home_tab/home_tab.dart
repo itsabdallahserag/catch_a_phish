@@ -26,14 +26,21 @@ class _HomeTabState extends State<HomeTab> {
 
   Future<void> getUser() async {
     user = await FirebaseUtils.readUser();
+
     if (!mounted) return;
+
     setState(() {});
+  }
+
+  Future<void> refreshUser() async {
+    await getUser();
   }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height * 0.08,
@@ -55,7 +62,7 @@ class _HomeTabState extends State<HomeTab> {
               Expanded(
                 child: CircleAvatar(
                   backgroundColor: AppColors.white,
-                  child: Icon(Icons.person, color: Colors.grey),
+                  child: const Icon(Icons.person, color: Colors.grey),
                 ),
               ),
             ],
@@ -64,7 +71,7 @@ class _HomeTabState extends State<HomeTab> {
       ),
       backgroundColor: AppColors.transparent,
       body: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -73,11 +80,16 @@ class _HomeTabState extends State<HomeTab> {
                 threatsBlocked: user?.threatsBlocked ?? 0,
               ),
               SizedBox(height: height * 0.02),
+
               Engaged(),
+
               SizedBox(height: height * 0.02),
-              MessageScanButton(),
+
+              MessageScanButton(onReturn: refreshUser),
+
               SizedBox(height: height * 0.02),
-              UrlScanButton(),
+
+              UrlScanButton(onReturn: refreshUser),
             ],
           ),
         ),

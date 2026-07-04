@@ -6,32 +6,49 @@ import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class UrlScanButton extends StatelessWidget {
-  const UrlScanButton({super.key});
+  final VoidCallback? onReturn;
+
+  const UrlScanButton({
+    super.key,
+    this.onReturn,
+  });
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                UrlScanScreen(),
+                const UrlScanScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
           ),
         );
+
+        onReturn?.call();
       },
       child: Container(
-        padding: const EdgeInsets.only(bottom: 16, left: 24, top: 16),
+        padding: const EdgeInsets.only(
+          bottom: 16,
+          left: 24,
+          top: 16,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           gradient: const LinearGradient(
-            colors: [AppColors.blackOverlay80, AppColors.deepBlue],
+            colors: [
+              AppColors.blackOverlay80,
+              AppColors.deepBlue,
+            ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
