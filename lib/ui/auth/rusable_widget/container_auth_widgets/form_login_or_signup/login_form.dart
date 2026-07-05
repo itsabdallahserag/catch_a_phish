@@ -10,6 +10,7 @@ import 'package:catch_a_phish/Ui/auth/custom_widgets/custom_text_field.dart';
 import 'package:catch_a_phish/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -20,8 +21,33 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
+
+  bool rememberMe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadRememberMe();
+  }
+
+  Future<void> loadRememberMe() async {
+    final remember = await storage.read(key: "remember_me");
+
+    if (remember == "true") {
+      emailController.text = await storage.read(key: "email") ?? "";
+      passwordController.text = await storage.read(key: "password") ?? "";
+
+      setState(() {
+        rememberMe = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,17 +56,23 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(AppLocalizations.of(context)!.enterYourEmail, style: AppStyles.regular12White),
-            SizedBox(height: 8),
+            Text(
+              AppLocalizations.of(context)!.enterYourEmail,
+              style: AppStyles.regular12White,
+            ),
+            const SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
                   return AppLocalizations.of(context)!.emailRequired;
                 }
+
                 final emailRegex = RegExp(r'^[\w.-]+@[\w.-]+\.\w{2,}$');
+
                 if (!emailRegex.hasMatch(text)) {
                   return AppLocalizations.of(context)!.enterValidEmail;
                 }
+
                 return null;
               },
               controller: emailController,
@@ -53,26 +85,32 @@ class _LoginFormState extends State<LoginForm> {
                 width: 20,
               ),
             ),
-            SizedBox(height: 16),
-            Text(AppLocalizations.of(context)!.enterYourPassword, style: AppStyles.regular12White),
-            SizedBox(height: 8),
+            const SizedBox(height: 16),
+            Text(
+              AppLocalizations.of(context)!.enterYourPassword,
+              style: AppStyles.regular12White,
+            ),
+            const SizedBox(height: 8),
             CustomTextField(
               validator: (text) {
                 if (text == null || text.isEmpty) {
                   return AppLocalizations.of(context)!.passwordRequired;
                 }
+
                 if (text.length < 8) {
                   return AppLocalizations.of(context)!.passwordMinLength;
                 }
+
                 if (!text.contains(RegExp(r'[A-Z]'))) {
                   return AppLocalizations.of(context)!.passwordUppercase;
                 }
+
                 if (!text.contains(RegExp(r'[0-9]'))) {
                   return AppLocalizations.of(context)!.passwordNumber;
                 }
+
                 return null;
               },
-
               controller: passwordController,
               hintText: AppLocalizations.of(context)!.password,
               keyboardType: TextInputType.visiblePassword,
@@ -84,18 +122,35 @@ class _LoginFormState extends State<LoginForm> {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Checkbox(value: false, onChanged: (value) {}),
-                Text(AppLocalizations.of(context)!.rememberMe, style: AppStyles.regular12White),
-                Spacer(),
-                Text('Forgot password?', style: AppStyles.medium12Blue),
+                Checkbox(
+                  value: rememberMe,
+                  onChanged: (value) {
+                    setState(() {
+                      rememberMe = value!;
+                    });
+                  },
+                ),
+                Text(
+                  AppLocalizations.of(context)!.rememberMe,
+                  style: AppStyles.regular12White,
+                ),
+                const Spacer(),
+                Text(
+                  'Forgot password?',
+                  style: AppStyles.medium12Blue,
+                ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             AuthActionButton(
-              gradientColors: [AppColors.neonBlue, AppColors.primary],
+              gradientColors: [
+                AppColors.neonBlue,
+                AppColors.primary,
+              ],
+              onTap: login,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -103,21 +158,21 @@ class _LoginFormState extends State<LoginForm> {
                     AppLocalizations.of(context)!.accessSecureTerminal,
                     style: AppStyles.medium16Black,
                   ),
-                  Icon(Icons.arrow_forward, color: AppColors.black),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.black,
+                  ),
                 ],
               ),
-              onTap: () {
-                login();
-              },
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             Text(
               AppLocalizations.of(context)!.orContinueWith,
               style: AppStyles.bold15Grey,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 36),
-            AuthSocialWidget(),
+            const SizedBox(height: 36),
+            const AuthSocialWidget(),
           ],
         ),
       ),
@@ -125,72 +180,101 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Future<void> login() async {
-    if (formKey.currentState!.validate()) {
-      AppDialogUtils.showLoading(
-        backgroundColor: AppColors.navyBackground,
-        dismissible: false,
-        context: context,
-        colorCircle: AppColors.skyBlue,
-        style: AppStyles.semiBold12SkyBlue,
+    if (!formKey.currentState!.validate()) return;
+
+    AppDialogUtils.showLoading(
+      backgroundColor: AppColors.navyBackground,
+      dismissible: false,
+      context: context,
+      colorCircle: AppColors.skyBlue,
+      style: AppStyles.semiBold12SkyBlue,
+    );
+
+    try {
+      UserCredential userCredential =
+          await FirebaseUtils.signInWithEmailAndPassword(
+        emailController.text.trim(),
+        passwordController.text.trim(),
       );
 
-      try {
-        UserCredential userCredential =
-            await FirebaseUtils.signInWithEmailAndPassword(
-              emailController.text.trim(),
-              passwordController.text.trim(),
-            );
+      if (!mounted) return;
 
-        if (!mounted) return;
-        if (!FirebaseUtils.isEmailVerified()) {
-          await FirebaseUtils.sendEmailVerification();
-          await FirebaseUtils.signOut();
-          if (!mounted) return;
-          AppDialogUtils.hideLoading(context);
-          AppDialogUtils.showMessage(
-            context: context,
-            title: AppLocalizations.of(context)!.verifyYourEmail,
-            message:
-                AppLocalizations.of(context)!.verificationEmailSent,
-            posActionName: AppLocalizations.of(context)!.ok,
-            posActionCallBack: () => Navigator.pop(context),
-          );
-          return;
-        }
+      if (!FirebaseUtils.isEmailVerified()) {
+        await FirebaseUtils.sendEmailVerification();
+        await FirebaseUtils.signOut();
 
-        AppDialogUtils.hideLoading(context);
-
-        AppDialogUtils.showMessage(
-          dialogBackgroundColor: AppColors.navyBackground,
-          dismissible: false,
-          messageStyle: AppStyles.semiBold12SkyBlue,
-          titleStyle: AppStyles.semiBold16White,
-          posActionStyle: AppStyles.semiBold16White,
-          context: context,
-          title: AppLocalizations.of(context)!.success,
-          message: '${AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
-          posActionName: AppLocalizations.of(context)!.ok,
-          posActionCallBack: () {
-            Navigator.pushReplacementNamed(context, AppRoutes.home);
-          },
-        );
-      } on FirebaseAuthException catch (e) {
         if (!mounted) return;
 
         AppDialogUtils.hideLoading(context);
 
         AppDialogUtils.showMessage(
           context: context,
-          title: AppLocalizations.of(context)!.loginFailed,
-          message: e.message ?? AppLocalizations.of(context)!.unknownError,
-          dialogBackgroundColor: AppColors.navyBackground,
-          dismissible: false,
-          messageStyle: AppStyles.semiBold12SkyBlue,
-          titleStyle: AppStyles.semiBold16White,
-          posActionStyle: AppStyles.semiBold16White,
+          title: AppLocalizations.of(context)!.verifyYourEmail,
+          message: AppLocalizations.of(context)!.verificationEmailSent,
           posActionName: AppLocalizations.of(context)!.ok,
+          posActionCallBack: () => Navigator.pop(context),
         );
+
+        return;
       }
+
+      if (rememberMe) {
+        await storage.write(
+          key: "remember_me",
+          value: "true",
+        );
+
+        await storage.write(
+          key: "email",
+          value: emailController.text.trim(),
+        );
+
+        await storage.write(
+          key: "password",
+          value: passwordController.text,
+        );
+      } else {
+        await storage.delete(key: "remember_me");
+        await storage.delete(key: "email");
+        await storage.delete(key: "password");
+      }
+
+      AppDialogUtils.hideLoading(context);
+
+      AppDialogUtils.showMessage(
+        dialogBackgroundColor: AppColors.navyBackground,
+        dismissible: false,
+        messageStyle: AppStyles.semiBold12SkyBlue,
+        titleStyle: AppStyles.semiBold16White,
+        posActionStyle: AppStyles.semiBold16White,
+        context: context,
+        title: AppLocalizations.of(context)!.success,
+        message:
+            '${AppLocalizations.of(context)!.welcomeUser} ${userCredential.user?.email}',
+        posActionName: AppLocalizations.of(context)!.ok,
+        posActionCallBack: () {
+          Navigator.pushReplacementNamed(
+            context,
+            AppRoutes.home,
+          );
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+
+      AppDialogUtils.hideLoading(context);
+
+      AppDialogUtils.showMessage(
+        context: context,
+        title: AppLocalizations.of(context)!.loginFailed,
+        message: e.message ?? AppLocalizations.of(context)!.unknownError,
+        dialogBackgroundColor: AppColors.navyBackground,
+        dismissible: false,
+        messageStyle: AppStyles.semiBold12SkyBlue,
+        titleStyle: AppStyles.semiBold16White,
+        posActionStyle: AppStyles.semiBold16White,
+        posActionName: AppLocalizations.of(context)!.ok,
+      );
     }
   }
 }
